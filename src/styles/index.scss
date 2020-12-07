@@ -1,0 +1,11 @@
+#piano-keys {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.player-key {
+  height: 250px;
+  width: 80px;
+  border: 1px solid black;
+}
