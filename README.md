@@ -14,8 +14,13 @@ Rapid Rhapsodies is a single-player coordination and reflex game that involves p
 - Holds and alerts if an incorrect press was made
 
 ### Wireframes
-The game will have two screens. The splash will display the game's logo and let the user choose the song and level of difficulty. Once confirmed, the user will be taken to the game frame. Moves will be populated and inch down toward the piano keys until they are played. An instructions drop down will be visible on both screens. Quitting the game or finishing a round will bring the user back to the splash to play again.
+The game will have two screens. The splash will display the game's logo and let the user choose the song and level of difficulty. Once confirmed, the user will be taken to the game frame. Moves will be populated and inch down toward the piano keys until they are played. An instructions drop down will be visible on both screens. Quitting the game or finishing a round will bring the user back to the splash to play again.  
 
+### Splash:
+![splash](https://github.com/jared-greenberg/rapid_rhapsodies/blob/main/src/assets/splash.png)
+
+### Game Frame:
+![gameframe](https://github.com/jared-greenberg/rapid_rhapsodies/blob/main/src/assets/game_frame.png)
 
 ## Architecture and Technology
 The game logic will be handled exclusively in Javascript. The game frame will be rendered with a mix of HTML and Canvas. In particular, the static piano keys will be implemented solely with HTML and the moving board will be implemented using Canvas. I will provide the files for piano notes/sound effects. Songs will be implemented as an array of note names that correspond to audio files. Ultimately, I would like to use the Web Audio API to help avoid sound latency, but I've been having some issues with it and might simply use audio html tags.
@@ -24,15 +29,19 @@ The game logic will be handled exclusively in Javascript. The game frame will be
 Day 1:
 - Create the Javascript logic for the game play (including timer and score)
 - Link the audio files to the project  
+
 Day 2:
 - Create the piano keys
-- Create the game board
+- Create the game board. 
+
 Day 3: 
 - Gameboard animation (scrolling, rendering time, score, and mistakes)
-- Add/test sound effects
+- Add/test sound effects  
+
 Day 4: 
 - Add menu for user to choose song/level
-- Debug
+- Debug  
+
 Day 5:
 - Create instructions and personal links
 - Final touches
