@@ -23,7 +23,7 @@ The game will have two screens. The splash will display the game's logo and let 
 ![gameframe](https://github.com/jared-greenberg/rapid_rhapsodies/blob/main/src/assets/game_frame.png)
 
 ## Architecture and Technology
-The game logic will be handled exclusively in Javascript. The game frame will be rendered with a mix of HTML and Canvas. In particular, the static piano keys will be implemented solely with HTML and the moving board will be implemented using Canvas. I will provide the files for piano notes/sound effects. Songs will be implemented as an array of note names that correspond to audio files. Ultimately, I would like to use the Web Audio API to help avoid sound latency, but I've been having some issues with it and might simply use audio html tags.
+The game logic will be handled exclusively in Javascript. The game frame will be rendered with a mix of HTML and Canvas. In particular, the static piano keys will be implemented solely with HTML and the moving board will be implemented using Canvas. I will provide the files for piano notes/sound effects. Songs will be implemented as an array of note names that correspond to audio files. Ultimately, I would like to use the Web Audio API to help avoid sound latency, but I've been having some issues with it and might simply use audio html tags (I am struggling with converting local mp3s into ArrayBuffers so they can be decoded and made into AudioBufferSourceNodes).
 
 ## Implementation Timeline
 Day 1:
