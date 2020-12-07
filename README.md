@@ -5,15 +5,16 @@ Rapid Rhapsodies is a single-player coordination and reflex game that involves p
 1. User Input  
 - Pick between 3 songs to play (Ode to Joy, Minuet in G, Fur Elise)
 - Choose the level of difficulty (easy, medium, or hard)  
-
-The Game frame will:
-- Have 5 possible keys each assigned to a letter on the keyboard
-- Be randomly populated with combinations of keys to press
-- Display the number of correct presses as well as the time left
-- Play a note on each correct key press
+2. Game Board  
+- 5 piano keys correspond to 5 keys on the keyboard
+- Information about accuracy and time  
+3. Game Play
+- Scrolls as moves are correctly played
+- Plays a note from the sound on each correct press
+- Holds and alerts if an incorrect press was made
 
 ### Wireframes
-The game will have two screens. The splash will display the game's logo and let the user choose the song and level of difficulty. Once confirmed, the user will be taken to the game frame. An instructions drop down will be visible on both screens. Quitting the game or finishing a round will bring the user back to the splash to play again.
+The game will have two screens. The splash will display the game's logo and let the user choose the song and level of difficulty. Once confirmed, the user will be taken to the game frame. Moves will be populated and inch down toward the piano keys until they are played. An instructions drop down will be visible on both screens. Quitting the game or finishing a round will bring the user back to the splash to play again.
 
 ![splash](https://github.com/jared-greenberg/rapid_rhapsodies/tree/main/src/assets/splash.png)  
 ![gameframe](https://github.com/jared_greenberg/rapid_rhapsodies/tree/main/src/assets/game_frame.png)
