@@ -1,8 +1,8 @@
 ### Background and Overview
-Rapid Rhapsodies is a single-player coordination and reflex game that involves pressing "piano keys" in the correct combination, much like Guitar Hero and Dance Dance Revolution. However, there is no rhythm element to it. You must try to get through each song as quickly and accurately as possible before the time runs out. Any incorrect presses will result in a temporary hold before you can continue. 
+Rapid Rhapsodies is a single-player coordination and reflex game that involves pressing "piano keys" in the correct combination, much like Guitar Hero and Dance Dance Revolution. There is no rhythm; you must try to get through each song as quickly and accurately as possible before the time runs out.
 
 ### Functionality and MVP
-Users will be able to:
+1. User Input  
 - Pick between 3 songs to play (Ode to Joy, Minuet in G, Fur Elise)
 - Choose the level of difficulty (easy, medium, or hard)  
 
@@ -15,8 +15,8 @@ The Game frame will:
 ### Wireframes
 The game will have two screens. The splash will display the game's logo and let the user choose the song and level of difficulty. Once confirmed, the user will be taken to the game frame. An instructions drop down will be visible on both screens. Quitting the game or finishing a round will bring the user back to the splash to play again.
 
-![splash](https://github.com/jared_greenberg/rapid_rhapsodies/src/assets/splash.png)  
-![gameframe](https://github.com/jared_greenberg/rapid_rhapsodies/src/assets/game_frame.png)
+![splash](https://github.com/jared-greenberg/rapid_rhapsodies/tree/main/src/assets/splash.png)  
+![gameframe](https://github.com/jared_greenberg/rapid_rhapsodies/tree/main/src/assets/game_frame.png)
 
 
 ## Architecture and Technology
