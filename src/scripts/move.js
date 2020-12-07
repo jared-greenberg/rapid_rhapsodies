@@ -19,13 +19,6 @@ class Move {
     return row;
   }
 
-  musicNote(){
-
-  }
-
-  draw(){
-    
-  }
 }
 
 export default Move;

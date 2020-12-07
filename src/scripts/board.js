@@ -12,25 +12,18 @@ class Board {
   static initializeBoard(songLength, level) {
     const rows = [];
     for (let i = 0; i < songLength; i++){
-      let a  = new Move(level)
-      rows.push(a.row)
+      rows.push(new Move(level))
     }
     return rows;
   }
 
   currentMove(){
-    console.log(this.rows[this.position])
     return parseInt(this.rows[this.position].join(""), 2);
   }
 
   nextMove(){
     this.position++;
   }
-
-  drawRows(){
-
-  }
-
 
 }
 

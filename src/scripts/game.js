@@ -12,18 +12,13 @@ class Game {
     this.timer = new Timer();
   }
 
-  go(){
-    this.board.currentMove();
-  }
-
-
   checkMove(playerMove){
     if ((this.board.currentMove() ^ playerMove) === 0){
       this.board.nextMove();
       return true;
     }
     else {
-      console.log("wrong")
+      console.log("wrong freeze")
       return false;
     }
   }
