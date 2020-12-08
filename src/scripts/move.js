@@ -3,6 +3,7 @@ class Move {
 
   constructor(level){
     this.row = Move.createRow(level) 
+    this.on = true;
   }
 
   static createRow(level){
@@ -58,6 +59,7 @@ class Move {
       }
     })
   }
+
 
 }
 

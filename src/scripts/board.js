@@ -21,6 +21,20 @@ class Board {
     return parseInt(this.rows[this.position].row.join(""), 2);
   }
 
+  drawErrors(xOr, ctx){
+  for (let box = 0; box < 5; box++){
+    if ((xOr & (2 ** box)) === (2 ** box)) {
+      ctx.font = '88px sans-serif';
+      ctx.fillStyle = "black";
+      ctx.fillText('X', 360 - (box * 70), 475);
+      }
+    }
+  }
+  
+  clearErrors(ctx){
+    ctx.clearRect(70, 395, 500 - 70, 500 - 395 )
+  }
+
   nextMove(){
     this.position++;
   }

@@ -65,8 +65,7 @@ function draw(){
 
 const makeMove = keysDown => {
   keysDown = parseInt(keysDown.join(""), 2);
-  debugger
-  if (game.checkMove(keysDown)){
+  if (game.checkMove(keysDown, ctx)){
     playTone();
     draw();
     console.log("play sound");

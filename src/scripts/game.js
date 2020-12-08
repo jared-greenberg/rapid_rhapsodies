@@ -12,15 +12,21 @@ class Game {
     this.timer = new Timer();
   }
 
-  checkMove(playerMove){
-    if ((this.board.currentMove() ^ playerMove) === 0){
+  checkMove(playerMove, ctx){
+    const xOr = this.board.currentMove() ^ playerMove;
+    if (xOr === 0){
       this.board.nextMove();
       return true;
     }
     else {
-      console.log("wrong freeze")
+      this.flashErrors(xOr, ctx);
       return false;
     }
+  }
+
+  flashErrors(xOr, ctx){
+    this.board.drawErrors(xOr, ctx);
+    setTimeout(()=>this.board.clearErrors(ctx), 1000)
   }
 
   // game ends when there are no more moves or the timer runs out.
