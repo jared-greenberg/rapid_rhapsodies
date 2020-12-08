@@ -9,22 +9,23 @@ const ctx = canvas.getContext("2d");
 
 const game = new Game(10, 3);
 let y = 397;
+let init = true;
 
 function draw(){
   ctx.clearRect(0, 0, 500, 500)
   let z = y;
   game.board.rows.forEach(row => {
-    // only draw the rows on the grid
+    // only draw the rows on the grid, can optimize with a for loop and break?
     if (z > -103 && z < 603){
-      row.drawRow(ctx, z)
+      row.drawRow(ctx, z);
     }
-    z -= 103
+    z -= 103;
   })
   
   // 103 / 8 to make sure we hit the 103
-  y += 12.875;
+  if (init) { init = false }
+  else {y += 12.875};
 
-  
   if ((y - 397 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
   }
@@ -33,20 +34,17 @@ function draw(){
 }
 
 
-
-
 const makeMove = keysDown => {
-  draw();
-  // keysDown = parseInt(keysDown.join(""), 2);
-  // if (game.checkMove(keysDown)){
-  // draw();
-  //   console.log("play sound");
-  //   console.log("load next sound");
-  // }
-  // else {
-  //   console.log('play fail sound');
-  //   console.log('load next sound')
-  // }
+   draw();
+  keysDown = parseInt(keysDown.join(""), 2);
+  if (game.checkMove(keysDown)){
+    console.log("play sound");
+    console.log("load next sound");
+  }
+  else {
+    console.log('play fail sound');
+    console.log('load next sound')
+  }
 }
 
 const debouncedMakeMove = debounce(makeMove, 80);
