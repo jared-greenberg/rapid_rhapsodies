@@ -1,11 +1,56 @@
-#piano-keys {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.player-key {
-  height: 250px;
-  width: 80px;
-  border: 1px solid black;
-}
+    .canvas-wrapper{
+      display: flex;
+      justify-content: center;
+    }
+
+     #piano-keys {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .player-key {
+      height: 220px;
+      width: 70px;
+      border: 1px solid black;
+    }
+
+    .black-key {
+      height: 120px;
+      width: 50px;
+      background: black;
+      border: outset grey;
+      margin: 0 -25px;
+      z-index: 5;
+    }
+
+    .red.selected {
+      border: inset;
+      background: red;
+    }
+
+    .orange.selected {
+      border: inset;
+      background: orange;
+    }
+
+    .yellow.selected {
+      border: inset;
+      background: yellow;
+    }
+
+    .green.selected {
+      border: inset;
+      background: green;
+    }
+
+    .blue.selected {
+      border: inset;
+      background: blue;
+    }
