@@ -9,7 +9,7 @@ const ctx = canvas.getContext("2d");
 const audioCtx = new AudioContext();
 let errorSource, noteSource;
 let i = 0;
-loadNextNote(Songs.minuetInG[i]);
+loadNextNote(Songs.furElise[i]);
 loadNextNote('wrong', true);
 
 function loadNextNote(str, error){
@@ -27,7 +27,7 @@ function loadNextNote(str, error){
 function playTone(){
   noteSource.start();
   i++;
-  loadNextNote(Songs.minuetInG[i]);
+  loadNextNote(Songs.furElise[i]);
 }
 
 function playError(){
@@ -35,7 +35,7 @@ function playError(){
   loadNextNote('wrong', true);
 }
 
-const game = new Game(Songs.minuetInG.length, 3);
+const game = new Game(Songs.furElise.length, 1);
 let y = 397;
 let init = true;
 
@@ -59,8 +59,7 @@ function draw(){
   if ((y - 397 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
   }
-
-  
+ 
 }
 
 
