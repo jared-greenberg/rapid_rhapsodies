@@ -15,7 +15,9 @@ class Move {
       [indices[i], indices[j]] = [indices[j], indices[i]]
     }
 
-    indices.slice(0, level).forEach(idx => row[idx] = 1)
+    const randomNum = Math.floor(Math.random() * level + 1);
+
+    indices.slice(0, randomNum).forEach(idx => row[idx] = 1)
     return row;
   }
 

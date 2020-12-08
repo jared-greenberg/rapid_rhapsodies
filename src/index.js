@@ -8,7 +8,8 @@ const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
 const audioCtx = new AudioContext();
 let errorSource, noteSource;
-loadNextNote(Songs.odeToJoy[0]);
+let i = 0;
+loadNextNote(Songs.minuetInG[i]);
 loadNextNote('wrong', true);
 
 function loadNextNote(str, error){
@@ -23,19 +24,18 @@ function loadNextNote(str, error){
     } )
 }
 
-
 function playTone(){
   noteSource.start();
-  loadNextNote(Songs.odeToJoy[2]);
+  i++;
+  loadNextNote(Songs.minuetInG[i]);
 }
 
 function playError(){
-  debugger
   errorSource.start();
   loadNextNote('wrong', true);
 }
 
-const game = new Game(10, 3);
+const game = new Game(Songs.minuetInG.length, 3);
 let y = 397;
 let init = true;
 
@@ -80,7 +80,7 @@ const makeMove = keysDown => {
   }
 }
 
-const debouncedMakeMove = debounce(makeMove, 80);
+const debouncedMakeMove = debounce(makeMove, 50);
 
 const keyElements = document.querySelectorAll('.player-key');
 const keys = {'a': 0, 's': 1, 'd': 2, 'f': 3, 'g': 4}
