@@ -1,15 +1,38 @@
 import debounce from 'lodash/debounce';
 import Game from './scripts/game';
 import './styles/index.scss';
+import * as Songs from './scripts/songs';
 
 
 
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
+const audioCtx = new AudioContext();
+let source;
+
+loadNextNote(Songs.odeToJoy[0]);
+
+function loadNextNote(str){
+  source = audioCtx.createBufferSource();
+  fetch(`./src/assets/notes/${str}.mp3`)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
+    .then(buffer => {
+      source.buffer = buffer;
+      source.connect(audioCtx.destination);
+    } )
+}
+
+function playTone(){
+  source.start();
+  loadNextNote(Songs.odeToJoy[2]);
+}
 
 const game = new Game(10, 3);
 let y = 397;
 let init = true;
+
+
 
 function draw(){
   ctx.clearRect(0, 0, 500, 500)
@@ -36,6 +59,7 @@ function draw(){
 
 const makeMove = keysDown => {
    draw();
+   playTone();
   keysDown = parseInt(keysDown.join(""), 2);
   if (game.checkMove(keysDown)){
     console.log("play sound");
