@@ -8,78 +8,45 @@ const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
 
 const game = new Game(10, 3);
-let y = 0;
+let y = 397;
 
 function draw(){
   ctx.clearRect(0, 0, 500, 500)
   let z = y;
-  let count = 0
   game.board.rows.forEach(row => {
-    if (z > 603) {
-     z -= 103;
-     return
+    // only draw the rows on the grid
+    if (z > -103 && z < 603){
+      row.drawRow(ctx, z)
     }
-    if (z < -103) return;
-    row.drawRow(ctx, z - 103)
-    count++;
-    z -= 103;
+    z -= 103
   })
-  console.log(count);
- 
+  
+  // 103 / 8 to make sure we hit the 103
   y += 12.875;
-  debugger
-  if (y % 103 !== 0) {
+
+  
+  if ((y - 397 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
   }
 
   
 }
-window.draw = draw;
-
-
-// ctx.beginPath();
-// ctx.strokeStyle = "black";
-// ctx.strokeRect(75, 0, 350, 88);
-// ctx.strokeRect(75, 0, 70, 88);
-// ctx.strokeRect(145, 0, 70, 88);
-// ctx.strokeRect(215, 0, 70, 88);
-// ctx.strokeRect(285, 0, 70, 88);
-// ctx.strokeRect(355, 0, 70, 88);
-
-// ctx.strokeRect(75, 103, 350, 88);
-// ctx.strokeRect(75, 206, 350, 88);
-// ctx.strokeRect(75, 309, 350, 88);
-// ctx.strokeRect(75, 412, 350, 88);
-// ctx.closePath();
-// ctx.beginPath();
-// ctx.arc(109.5, 55, 11, 0, Math.PI * 2);
-// ctx.fill();
-// ctx.closePath();
-// ctx.beginPath();
-// ctx.moveTo(120, 53.5);
-// ctx.lineWidth = 2;
-// ctx.lineTo(120, 24.5);
-// ctx.stroke();
-
-
-
-
-
-
 
 
 
 
 const makeMove = keysDown => {
-  keysDown = parseInt(keysDown.join(""), 2);
-  if (game.checkMove(keysDown)){
-    console.log("play sound");
-    console.log("load next sound");
-  }
-  else {
-    console.log('play fail sound');
-    console.log('load next sound')
-  }
+  draw();
+  // keysDown = parseInt(keysDown.join(""), 2);
+  // if (game.checkMove(keysDown)){
+  // draw();
+  //   console.log("play sound");
+  //   console.log("load next sound");
+  // }
+  // else {
+  //   console.log('play fail sound');
+  //   console.log('load next sound')
+  // }
 }
 
 const debouncedMakeMove = debounce(makeMove, 80);
