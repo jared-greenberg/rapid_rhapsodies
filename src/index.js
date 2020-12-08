@@ -4,28 +4,34 @@ import './styles/index.scss';
 import * as Songs from './scripts/songs';
 
 
-
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
 const audioCtx = new AudioContext();
-let source;
-
+let errorSource, noteSource;
 loadNextNote(Songs.odeToJoy[0]);
+loadNextNote('wrong', true);
 
-function loadNextNote(str){
-  source = audioCtx.createBufferSource();
+function loadNextNote(str, error){
+  let source = audioCtx.createBufferSource();
   fetch(`./src/assets/notes/${str}.mp3`)
     .then(response => response.arrayBuffer())
     .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
     .then(buffer => {
       source.buffer = buffer;
       source.connect(audioCtx.destination);
+      error ? errorSource = source : noteSource = source;
     } )
 }
 
+
 function playTone(){
-  source.start();
+  noteSource.start();
   loadNextNote(Songs.odeToJoy[2]);
+}
+
+function playError(){
+  errorSource.start();
+  loadNextNote('wrong', true);
 }
 
 const game = new Game(10, 3);
@@ -58,8 +64,8 @@ function draw(){
 
 
 const makeMove = keysDown => {
-   draw();
-   playTone();
+  draw();
+  playTone();
   keysDown = parseInt(keysDown.join(""), 2);
   if (game.checkMove(keysDown)){
     console.log("play sound");

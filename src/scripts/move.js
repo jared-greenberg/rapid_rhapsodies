@@ -37,7 +37,6 @@ class Move {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
         const startY = y + 55
-        debugger
         ctx.arc(startX, startY, 11, 0, Math.PI * 2);
         ctx.fill();
         ctx.beginPath();
