@@ -30,6 +30,7 @@ function playTone(){
 }
 
 function playError(){
+  debugger
   errorSource.start();
   loadNextNote('wrong', true);
 }
@@ -38,7 +39,7 @@ const game = new Game(10, 3);
 let y = 397;
 let init = true;
 
-
+draw(init);
 
 function draw(){
   ctx.clearRect(0, 0, 500, 500)
@@ -64,14 +65,16 @@ function draw(){
 
 
 const makeMove = keysDown => {
-  draw();
-  playTone();
   keysDown = parseInt(keysDown.join(""), 2);
+  debugger
   if (game.checkMove(keysDown)){
+    playTone();
+    draw();
     console.log("play sound");
     console.log("load next sound");
   }
   else {
+    playError();
     console.log('play fail sound');
     console.log('load next sound')
   }

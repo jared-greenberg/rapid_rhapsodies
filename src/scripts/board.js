@@ -18,7 +18,7 @@ class Board {
   }
 
   currentMove(){
-    return parseInt(this.rows[this.position].join(""), 2);
+    return parseInt(this.rows[this.position].row.join(""), 2);
   }
 
   nextMove(){
