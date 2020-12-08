@@ -1,9 +1,9 @@
 // Creates each row of the board
 class Move {
 
-  constructor(level){
-    this.row = Move.createRow(level) 
-    this.on = true;
+  constructor(level, ctx){
+    this.row = Move.createRow(level);
+    this.ctx = ctx;
   }
 
   static createRow(level){
@@ -22,40 +22,40 @@ class Move {
     return row;
   }
 
-  drawRow(ctx, y){
-    ctx.beginPath();
-    ctx.strokeStyle = "black";
-    ctx.strokeRect(75, y, 350, 88);
-    ctx.strokeRect(75, y, 70, 88);
-    ctx.strokeRect(145, y, 70, 88);
-    ctx.strokeRect(215, y, 70, 88);
-    ctx.strokeRect(285, y, 70, 88);
-    ctx.strokeRect(355, y, 70, 88);
-    ctx.stroke();
+  drawRow(y){
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = "black";
+    this.ctx.strokeRect(75, y, 350, 88);
+    this.ctx.strokeRect(75, y, 70, 88);
+    this.ctx.strokeRect(145, y, 70, 88);
+    this.ctx.strokeRect(215, y, 70, 88);
+    this.ctx.strokeRect(285, y, 70, 88);
+    this.ctx.strokeRect(355, y, 70, 88);
+    this.ctx.stroke();
     
-    this.drawMusicNotes(ctx, y);
+    this.drawMusicNotes(y);
   }
 
-  drawMusicNotes(ctx, y){
+  drawMusicNotes(y){
     const colors = ['red', 'orange', 'gold', 'green', 'blue']
     this.row.forEach((slot, i) => {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
         const startY = y + 55
-        ctx.arc(startX, startY, 11, 0, Math.PI * 2);
-        ctx.fillStyle = colors[i];
-        ctx.fill();
-        ctx.beginPath();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "white";
-        ctx.arc(startX, startY, 8, 3 * Math.PI / 2, 0);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.strokeStyle = colors[i];
-        ctx.moveTo(startX + 10, startY);
-        ctx.lineTo(startX + 10, startY - 30);
-        ctx.stroke();
-        ctx.closePath();
+        this.ctx.arc(startX, startY, 11, 0, Math.PI * 2);
+        this.ctx.fillStyle = colors[i];
+        this.ctx.fill();
+        this.ctx.beginPath();
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = "white";
+        this.ctx.arc(startX, startY, 8, 3 * Math.PI / 2, 0);
+        this.ctx.stroke();
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = colors[i];
+        this.ctx.moveTo(startX + 10, startY);
+        this.ctx.lineTo(startX + 10, startY - 30);
+        this.ctx.stroke();
+        this.ctx.closePath();
       }
     })
   }

@@ -3,8 +3,9 @@ import Timer from './timer';
 
 class Game {
   
-  constructor(songLength, level) {
-    this.board = new Board(songLength, level)
+  constructor(songLength, level, ctx) {
+    this.board = new Board(songLength, level, ctx)
+    this.ctx = ctx;
   }
 
   
@@ -12,21 +13,34 @@ class Game {
     this.timer = new Timer();
   }
 
-  checkMove(playerMove, ctx){
+  checkMove(playerMove){
     const xOr = this.board.currentMove() ^ playerMove;
     if (xOr === 0){
       this.board.nextMove();
       return true;
     }
     else {
-      this.flashErrors(xOr, ctx);
+      this.flashErrors(xOr);
       return false;
     }
   }
 
-  flashErrors(xOr, ctx){
-    this.board.drawErrors(xOr, ctx);
-    setTimeout(()=>this.board.clearErrors(ctx), 1000)
+  flashErrors(xOr){
+    let count = 0;
+    this.board.drawErrors(xOr)
+    const flash = setInterval(() => {
+      if (count === 5){
+        clearInterval(flash);
+      }
+      else if (count % 2 !== 0){
+        this.board.drawErrors(xOr)
+      }
+      else {
+        this.board.clearErrors();
+        this.board.rows[this.board.position].drawRow(397);
+      }
+      count++
+    }, 500);
   }
 
   // game ends when there are no more moves or the timer runs out.
