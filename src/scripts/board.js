@@ -30,17 +30,14 @@ class Board {
     if ((xOr & (2 ** box)) === (2 ** box)) {
       
       if ((this.currentMove() & (2 **  box)) === 0){
-        this.ctx.font = '88px sans-serif';
-        this.ctx.fillStyle = "maroon";
-        this.ctx.fillText('X', 360 - (box * 70), 395);
+        this.ctx.fillStyle = "red";
+        this.ctx.fillRect(357 - (70 * box), 420 - 98, 67, 86);
       }
       else{
-        this.ctx.font = '65px sans-serif';
-        this.ctx.fillStyle = "maroon";
-        this.ctx.fillText('\u25EF', 358 - (box * 70), 390);
-
+        this.ctx.fillStyle = "white";
+        this.ctx.fillRect(357 - (70 * box), 420 - 98, 67, 86);
+        this.rows[this.position].drawMusicNotes(320)
       }
-      
       
     }
   }
