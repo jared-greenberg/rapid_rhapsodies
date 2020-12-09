@@ -1,46 +1,13 @@
 import debounce from 'lodash/debounce';
 import Game from './scripts/game';
 import './styles/index.scss';
-import * as Songs from './scripts/songs';
+import Songs from './scripts/songs';
 
 //
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
 
-const audioCtx = new AudioContext();
-let errorSource, noteSource;
-let i = 0;
-loadNextNote(Songs.furElise[i]);
-loadNextNote('wrong', true);
 
-function loadNextNote(str, error){
-  let source = audioCtx.createBufferSource();
-  fetch(`./src/assets/notes/${str}.mp3`)
-    .then(response => response.arrayBuffer())
-    .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
-    .then(buffer => {
-      source.buffer = buffer;
-      source.connect(audioCtx.destination);
-      error ? errorSource = source : noteSource = source;
-    } )
-}
-
-function playTone(){
-  noteSource.start();
-  i++;
-  loadNextNote(Songs.furElise[i]);
-}
-
-function playError(){
-  errorSource.start();
-  loadNextNote('wrong', true);
-}
-
-const game = new Game(Songs.furElise.length, 1, ctx);
-let started = false;
-let y = canvas.height - 99;
-
-draw();
 
 function draw(){
   ctx.clearRect(70, 0, canvas.width-70 , canvas.height);
@@ -109,15 +76,60 @@ document.addEventListener('keyup', (e) => {
 const menu = document.getElementById("menu-background");
 const startButton = document.getElementById("start-game");
 const quit = document.getElementById("quit");
+let song, level;
+const audioCtx = new AudioContext();
+let errorSource, noteSource;
+let i = 0;
+let started = false;
+let y;
+let game;
+
+
 
 startButton.addEventListener('click', (e) => {
   e.preventDefault();
   menu.classList.add('hidden');
+  song = document.querySelector('input[name="song"]:checked').value;
+  level = document.querySelector('input[name="level"]:checked').value;
+  debugger
+   i = 0;
+  loadNextNote(Songs[song][i]);
+  loadNextNote('wrong', true);  
+  game = new Game(Songs[song].length, level, ctx);
+  y = canvas.height - 99;
+  draw();
 })
+
+
+function loadNextNote(str, error){
+  let source = audioCtx.createBufferSource();
+  fetch(`./src/assets/notes/${str}.mp3`)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
+    .then(buffer => {
+      source.buffer = buffer;
+      source.connect(audioCtx.destination);
+      error ? errorSource = source : noteSource = source;
+    } )
+}
+
+function playTone(){
+  noteSource.start();
+  i++;
+  if (i !== game.board.length){
+  loadNextNote(Songs[song][i]);
+  }
+}
+
+function playError(){
+  errorSource.start();
+  loadNextNote('wrong', true);
+}
 
 quit.addEventListener('click', (e) => {
   e.preventDefault();
   menu.classList.remove('hidden');
+  game.quit();
 })
 
 

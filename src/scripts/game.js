@@ -7,22 +7,22 @@ class Game {
     this.score = 0;
     this.seconds = 59;
     this.scoreElement = document.getElementById("score");
+    this.timerElement = document.getElementById("timer");
   }
 
 
   // keeps track of time
   startTimer(){
-    const timerElement = document.getElementById("timer");
-    timerElement.innerHTML = this.seconds;
+    this.timerElement.innerHTML = this.seconds;
   
-    const interval = setInterval(() => {
+     this.interval = setInterval(() => {
       this.seconds--;
       if (this.seconds === -1) {
-        timerElement.style.color = "red";
-        timerElement.innerHTML = "Times Up!";
-        clearInterval(interval);
+        this.timerElement.style.color = "red";
+        this.timerElement.innerHTML = "Times Up!";
+        clearInterval(this.interval);
       } else {
-        timerElement.innerHTML = this.seconds;
+        this.timerElement.innerHTML = this.seconds;
       }
     }, 1000);
 
@@ -60,6 +60,12 @@ class Game {
       }
       count++
     }, 500);
+  }
+
+  quit(){
+    clearInterval(this.interval);
+    this.timerElement.innerHTML = 60;
+    this.scoreElement.innerHTML = 0;
   }
 
   // game ends when there are no more moves or the timer runs out.
