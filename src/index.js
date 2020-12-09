@@ -41,7 +41,7 @@ let y = 397;
 draw();
 
 function draw(){
-  ctx.clearRect(0, 0, 500, 500)
+  ctx.clearRect(0, 0, 500, 500);
   let z = y;
   // TODO change this to for loop to exit early?
   game.board.rows.forEach(row => {
@@ -73,6 +73,7 @@ const makeMove = keysDown => {
   }
   else {
     playError();
+
     console.log('play fail sound');
     console.log('load next sound')
   }

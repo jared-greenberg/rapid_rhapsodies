@@ -7,6 +7,7 @@
     .canvas-wrapper{
       display: flex;
       justify-content: center;
+      background: #A4A39F;
     }
 
      #piano-keys {
@@ -32,25 +33,25 @@
 
     .red.selected {
       border: inset;
-      background: red;
+      background: #33FCFF;
     }
 
     .orange.selected {
       border: inset;
-      background: orange;
+      background: #AF33FF;
     }
 
     .yellow.selected {
       border: inset;
-      background: yellow;
+      background: #E5FE15;
     }
 
     .green.selected {
       border: inset;
-      background: green;
+      background: #FF8D33;
     }
 
     .blue.selected {
       border: inset;
-      background: blue;
+      background: #AFFF33;
     }

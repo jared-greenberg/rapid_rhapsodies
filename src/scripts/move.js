@@ -4,6 +4,8 @@ class Move {
   constructor(level, ctx){
     this.row = Move.createRow(level);
     this.ctx = ctx;
+    this.blue = document.getElementById("blue")
+    this.pos = 0;
   }
 
   static createRow(level){
@@ -24,20 +26,32 @@ class Move {
 
   drawRow(y){
     this.ctx.beginPath();
+    this.ctx.save();
+    this.ctx.fillStyle = "#51514D";
     this.ctx.strokeStyle = "black";
-    this.ctx.strokeRect(75, y, 350, 88);
+    this.ctx.fillRect(75, y, 350, 88);
     this.ctx.strokeRect(75, y, 70, 88);
     this.ctx.strokeRect(145, y, 70, 88);
     this.ctx.strokeRect(215, y, 70, 88);
     this.ctx.strokeRect(285, y, 70, 88);
     this.ctx.strokeRect(355, y, 70, 88);
-    this.ctx.stroke();
-    
+    this.ctx.restore();
     this.drawMusicNotes(y);
   }
 
+  // drawMusicNotes(y){
+   
+  //   this.ctx.drawImage(this.blue, (this.pos % 17) * 72, 0, 70, 70, 75, y, 70, 70)
+  //   this.pos++;
+  //   setTimeout(()=>{
+  //     this.ctx.clearRect(75, y, 70, 70);
+      
+  //     requestAnimationFrame(() => this.drawMusicNotes(y));
+  //   }, 100)
+  // }
+
   drawMusicNotes(y){
-    const colors = ['red', 'orange', 'gold', 'green', 'blue']
+    const colors = ['#33FCFF', '#AF33FF', '#E5FE15', '#FF8D33', '#AFFF33']
     this.row.forEach((slot, i) => {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
