@@ -8,7 +8,6 @@ class Game {
     this.ctx = ctx;
   }
 
-  
   startTimer(){
     this.timer = new Timer();
   }
@@ -47,6 +46,8 @@ class Game {
   gameOver() {
     !this.board.currentMove || this.timer.seconds === 0
   }
+
+ 
 
 }
 

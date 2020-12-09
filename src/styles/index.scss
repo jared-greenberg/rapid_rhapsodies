@@ -11,13 +11,15 @@
     .canvas-wrapper{
       display: flex;
       justify-content: center;
-      padding-top: 40px;
+      padding-top: 30px;
+      padding-bottom: 10px;
     }
 
      #piano-keys {
       display: flex;
       width: 100%;
       justify-content: center;
+
     }
 
     .player-key {
@@ -60,4 +62,9 @@
     .green.selected {
       border: inset;
       background: #AFFF33;
+    }
+
+    #timer {
+      color: red;
+      background: white;
     }

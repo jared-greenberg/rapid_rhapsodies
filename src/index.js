@@ -37,6 +37,7 @@ function playError(){
 }
 
 const game = new Game(Songs.furElise.length, 1, ctx);
+game.startTimer();
 let y = canvas.height - 99;
 
 draw();
