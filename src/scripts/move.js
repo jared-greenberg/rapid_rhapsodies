@@ -26,16 +26,51 @@ class Move {
 
   drawRow(y){
     this.ctx.beginPath();
-    this.ctx.save();
     this.ctx.fillStyle = "#51514D";
     this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 2;
     this.ctx.fillRect(75, y, 350, 88);
     this.ctx.strokeRect(75, y, 70, 88);
     this.ctx.strokeRect(145, y, 70, 88);
     this.ctx.strokeRect(215, y, 70, 88);
     this.ctx.strokeRect(285, y, 70, 88);
     this.ctx.strokeRect(355, y, 70, 88);
-    this.ctx.restore();
+    this.ctx.closePath();
+    
+    this.ctx.save();
+    this.ctx.lineWidth = 4;
+    this.ctx.moveTo(76, y-3);
+    this.ctx.lineTo(429, y-3);
+    this.ctx.lineTo(429, y + 88)
+    this.ctx.strokeStyle = '#353430';
+    this.ctx.stroke();
+    this.ctx.closePath();
+
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeStyle = "black";
+    this.ctx.moveTo(425, y);
+    this.ctx.lineTo(431, y-6);
+    this.ctx.closePath();
+    this.ctx.stroke();
+    
+    this.ctx.beginPath();
+    this.ctx.fillStyle = "black";
+    this.ctx.moveTo(75, y);
+    this.ctx.lineTo(81, y-6);
+    this.ctx.lineTo(75, y-6);
+    this.ctx.fill();
+    this.ctx.closePath();
+  
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(425, y+88);
+    this.ctx.lineTo(431, y+82);
+    this.ctx.lineTo(431, y+88);
+    this.ctx.fill();
+      this.ctx.restore();
+    
+
     this.drawMusicNotes(y);
   }
 
@@ -56,11 +91,11 @@ class Move {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
         const startY = y + 55
+        this.ctx.beginPath();
         this.ctx.arc(startX, startY, 11, 0, Math.PI * 2);
         this.ctx.fillStyle = colors[i];
         this.ctx.fill();
         this.ctx.beginPath();
-        this.ctx.lineWidth = 2;
         this.ctx.strokeStyle = "white";
         this.ctx.arc(startX, startY, 8, 3 * Math.PI / 2, 0);
         this.ctx.stroke();

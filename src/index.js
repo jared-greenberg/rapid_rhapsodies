@@ -61,7 +61,7 @@ function draw(){
  
 }
 
-
+let paused = false;
 
 const makeMove = keysDown => {
   keysDown = parseInt(keysDown.join(""), 2);
@@ -73,7 +73,8 @@ const makeMove = keysDown => {
   }
   else {
     playError();
-
+    paused = true;
+    setTimeout( () => paused = false, 3000)
     console.log('play fail sound');
     console.log('load next sound')
   }
@@ -87,6 +88,7 @@ let keysDown = [0, 0, 0, 0, 0];
 
 
 document.addEventListener('keydown', (e) => {
+  if (paused) return;
   const idx = keys[e.key]
   if (idx === undefined || keysDown[idx] === 1) return;
   keysDown[idx] = 1;
