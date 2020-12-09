@@ -1,21 +1,40 @@
 import Board from './board';
-import Timer from './timer';
 
 class Game {
   
   constructor(songLength, level, ctx) {
     this.board = new Board(songLength, level, ctx)
-    this.ctx = ctx;
+    this.score = 0;
+    this.seconds = 5;
+    this.scoreElement = document.getElementById("score");
   }
 
+
+  // keeps track of time
   startTimer(){
-    this.timer = new Timer();
+    const timerElement = document.getElementById("timer");
+    timerElement.innerHTML = this.seconds;
+  
+    const interval = setInterval(() => {
+      this.seconds--;
+      if (this.seconds === -1) {
+        timerElement.style.color = "red";
+        timerElement.innerHTML = "Times Up!";
+        clearInterval(interval);
+      } else {
+        timerElement.innerHTML = this.seconds;
+      }
+    }, 1000);
+
   }
+  
 
   checkMove(playerMove){
     const xOr = this.board.currentMove() ^ playerMove;
     if (xOr === 0){
       this.board.nextMove();
+      this.score++;
+      this.scoreElement.innerHTML = this.score;
       return true;
     }
     else {
@@ -24,6 +43,7 @@ class Game {
     }
   }
 
+  // organizes errors flashing
   flashErrors(xOr){
     let count = 0;
     this.board.drawErrors(xOr)
@@ -44,7 +64,7 @@ class Game {
 
   // game ends when there are no more moves or the timer runs out.
   gameOver() {
-    !this.board.currentMove || this.timer.seconds === 0
+    return !this.board.currentMove || this.seconds === -1
   }
 
  

@@ -6,12 +6,13 @@
     
     body {
       background: black;
+      width: 1200;
     }
 
     .canvas-wrapper{
       display: flex;
       justify-content: center;
-      padding-top: 30px;
+      padding-top: 15px;
       padding-bottom: 10px;
     }
 
@@ -64,7 +65,17 @@
       background: #AFFF33;
     }
 
-    #timer {
-      color: red;
-      background: white;
+    .score-container, .timer-container{
+      width: 70px;
     }
+  
+    .game-info{
+      color: white;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      width: 350px;
+      text-align: center;
+    }
+  
+    

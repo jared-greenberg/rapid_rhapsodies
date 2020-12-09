@@ -37,7 +37,7 @@ function playError(){
 }
 
 const game = new Game(Songs.furElise.length, 1, ctx);
-game.startTimer();
+let started = false;
 let y = canvas.height - 99;
 
 draw();
@@ -46,9 +46,6 @@ function draw(){
   ctx.clearRect(70, 0, canvas.width-70 , canvas.height);
   let rowY = y;
   // TODO change this to for loop to exit early?
-
-
-
   game.board.rows.forEach(row => {
     // only draw the rows on the grid, can optimize with a for loop and break?
     if (rowY > -103 && rowY < canvas.height){
@@ -67,30 +64,21 @@ function draw(){
  
 }
 
-function drawArrows(){
-  ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(72, 59);
-  ctx.lineTo(62, 49);
-  ctx.moveTo(72, 59);
-  ctx.lineTo(62, 69);
-
-
-
-  ctx.restore();
-
-  requestAnimationFrame(drawArrows)
-}
 
 let paused = false;
 
 const makeMove = keysDown => {
   keysDown = parseInt(keysDown.join(""), 2);
   if (game.checkMove(keysDown)){
+    if (!started){
+    game.startTimer();
+    started = true;
+  }
     playTone();
     draw();
   }
   else {
+    if (!started) return;
     playError();
     paused = true;
     setTimeout( () => paused = false, 3000)
@@ -105,7 +93,7 @@ let keysDown = [0, 0, 0, 0, 0];
 
 
 document.addEventListener('keydown', (e) => {
-  if (paused) return;
+  if (paused || game.gameOver()) return;
   const idx = keys[e.key]
   if (idx === undefined || keysDown[idx] === 1) return;
   keysDown[idx] = 1;
