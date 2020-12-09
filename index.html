@@ -10,6 +10,51 @@
 
 <body>
 
+<section class="instructions-panel">
+  Instructions
+</section>
+
+<section class="game-or-menu-container">
+  <div id="menu-background">
+    <div class="menu-container">
+
+      <img id="big-logo" src="./src/assets/logo2.png" alt="logo"/>
+      
+      <form class="selection">
+       
+        <div class="song-titles">
+          <h2>Select Song</h2>
+          <input id="odeToJoy" name="song" checked value="odeToJoy" type="radio" />
+          <label for="odeToJoy">Ode To Joy</label>
+          
+          <input id="minuetInG" name="song" value="minuetInG" type="radio" />
+          <label for="minuetInG">Minuet In G</label>
+          
+          <input id="furElise" name="song" value="furElise" type="radio" />
+          <label for="furElise">Fur Elise</label>
+        </div>
+
+        <div class="levels">
+          <h2>Select Difficulty</h2>
+
+          
+          <input id="easy" name="level"  checked value="1" type="radio"/>
+          <label for="easy">Easy</label>
+          
+          <input id="medium" name="level"  value="2" type="radio"/>
+          <label for="medium"> Medium</label>
+          
+          <input id="hard"  name="level" value="3" type="radio"/>
+          <label for="hard">Hard</label>
+
+        </div>
+
+        <input id="start-game" type="submit" value="Play">
+      </form>
+    </div>
+  </div>
+
+
   <div class="game-info">
     <div class="timer-container">
       <h3>Time:</h3>
@@ -19,7 +64,9 @@
       <h3>Score:</h3>
       <div id="score">0</div>
     </div>
+    <button id="quit">Quit</button>
   </div>
+
 
   <div class="canvas-wrapper">
   <canvas height="420" width="500" id="game-board"></canvas>
@@ -35,7 +82,7 @@
     <div class="black-key"></div>
     <div class="player-key green"></div>
   </div>
-
+</section>
   <img id="blue" src="./src/assets/spritesheet.png" style="display: none;">
 
   

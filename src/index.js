@@ -106,6 +106,20 @@ document.addEventListener('keyup', (e) => {
   keyElements[keys[e.key]].classList.remove("selected");
 })
 
+const menu = document.getElementById("menu-background");
+const startButton = document.getElementById("start-game");
+const quit = document.getElementById("quit");
+
+startButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  menu.classList.add('hidden');
+})
+
+quit.addEventListener('click', (e) => {
+  e.preventDefault();
+  menu.classList.remove('hidden');
+})
+
 
 
 

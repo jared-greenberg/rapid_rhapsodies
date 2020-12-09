@@ -5,7 +5,7 @@ class Game {
   constructor(songLength, level, ctx) {
     this.board = new Board(songLength, level, ctx)
     this.score = 0;
-    this.seconds = 5;
+    this.seconds = 59;
     this.scoreElement = document.getElementById("score");
   }
 
@@ -64,7 +64,7 @@ class Game {
 
   // game ends when there are no more moves or the timer runs out.
   gameOver() {
-    return !this.board.currentMove || this.seconds === -1
+    return this.board.position === this.board.length || this.seconds === -1
   }
 
  
