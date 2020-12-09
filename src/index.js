@@ -6,6 +6,7 @@ import * as Songs from './scripts/songs';
 //
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
+
 const audioCtx = new AudioContext();
 let errorSource, noteSource;
 let i = 0;
@@ -36,29 +37,48 @@ function playError(){
 }
 
 const game = new Game(Songs.furElise.length, 1, ctx);
-let y = 397;
+let y = canvas.height - 99;
 
 draw();
 
 function draw(){
-  ctx.clearRect(0, 0, 500, 500);
-  let z = y;
+  ctx.clearRect(70, 0, canvas.width-70 , canvas.height);
+  let rowY = y;
   // TODO change this to for loop to exit early?
+
+
+
   game.board.rows.forEach(row => {
     // only draw the rows on the grid, can optimize with a for loop and break?
-    if (z > -103 && z < 603){
-      row.drawRow(z);
+    if (rowY > -103 && rowY < canvas.height){
+      row.drawRow(rowY);
     }
-    z -= 103;
+    rowY -= 103;
   })
   
   // 103 / 8 to make sure we hit the 103
-  y += 12.875
+  y += 12.875 
 
-  if ((y - 397 - 12.875) % 103 !== 0) {
+
+  if ((y - 321 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
   }
  
+}
+
+function drawArrows(){
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(72, 59);
+  ctx.lineTo(62, 49);
+  ctx.moveTo(72, 59);
+  ctx.lineTo(62, 69);
+
+
+
+  ctx.restore();
+
+  requestAnimationFrame(drawArrows)
 }
 
 let paused = false;
@@ -68,15 +88,11 @@ const makeMove = keysDown => {
   if (game.checkMove(keysDown)){
     playTone();
     draw();
-    console.log("play sound");
-    console.log("load next sound");
   }
   else {
     playError();
     paused = true;
     setTimeout( () => paused = false, 3000)
-    console.log('play fail sound');
-    console.log('load next sound')
   }
 }
 

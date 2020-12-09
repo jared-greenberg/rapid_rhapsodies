@@ -80,9 +80,8 @@ class Move {
   //   this.pos++;
   //   setTimeout(()=>{
   //     this.ctx.clearRect(75, y, 70, 70);
-      
   //     requestAnimationFrame(() => this.drawMusicNotes(y));
-  //   }, 100)
+  //   }, 300)
   // }
 
   drawMusicNotes(y){

@@ -7,6 +7,7 @@ class Board {
   constructor(songLength, level, ctx) {
     this.ctx = ctx;
     this.rows = Board.initializeBoard(songLength, level, ctx);
+    this.length = this.rows.length;
     this.position = 0;
   }
 
@@ -23,11 +24,24 @@ class Board {
   }
 
   drawErrors(xOr){
+    
   for (let box = 0; box < 5; box++){
+    
     if ((xOr & (2 ** box)) === (2 ** box)) {
-      this.ctx.font = '88px sans-serif';
-      this.ctx.fillStyle = "black";
-      this.ctx.fillText('X', 360 - (box * 70), 475);
+      
+      if ((this.currentMove() & (2 **  box)) === 0){
+        this.ctx.font = '88px sans-serif';
+        this.ctx.fillStyle = "maroon";
+        this.ctx.fillText('X', 360 - (box * 70), 395);
+      }
+      else{
+        this.ctx.font = '65px sans-serif';
+        this.ctx.fillStyle = "maroon";
+        this.ctx.fillText('\u25EF', 358 - (box * 70), 390);
+
+      }
+      
+      
     }
   }
   }

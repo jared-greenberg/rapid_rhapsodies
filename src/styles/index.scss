@@ -3,11 +3,15 @@
       padding: 0;
       box-sizing: border-box;
     }
+    
+    body {
+      background: black;
+    }
 
     .canvas-wrapper{
       display: flex;
       justify-content: center;
-      background: black;
+      padding-top: 40px;
     }
 
      #piano-keys {
@@ -20,6 +24,8 @@
       height: 220px;
       width: 70px;
       border: 1px solid black;
+      background: white;
+      border: outset;
     }
 
     .black-key {
@@ -31,12 +37,12 @@
       z-index: 5;
     }
 
-    .red.selected {
+    .blue.selected {
       border: inset;
       background: #33FCFF;
     }
 
-    .orange.selected {
+    .pink.selected {
       border: inset;
       background: #AF33FF;
     }
@@ -46,12 +52,12 @@
       background: #E5FE15;
     }
 
-    .green.selected {
+    .orange.selected {
       border: inset;
       background: #FF8D33;
     }
 
-    .blue.selected {
+    .green.selected {
       border: inset;
       background: #AFFF33;
     }
