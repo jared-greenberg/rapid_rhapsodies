@@ -7,6 +7,7 @@ class Game {
     this.score = 0;
     this.seconds = 29;
     this.scoreElement = document.getElementById("score");
+    this.showScore();
     this.timerElement = document.getElementById("timer");
   }
 
@@ -29,6 +30,10 @@ class Game {
     }, 1000);
 
   }
+
+  showScore(){
+    this.scoreElement.innerHTML = `${this.score} / ${this.board.length}`
+  }
   
 
   checkMove(playerMove){
@@ -36,7 +41,7 @@ class Game {
     if (xOr === 0){
       this.board.nextMove();
       this.score++;
-      this.scoreElement.innerHTML = this.score;
+      this.showScore();
       return true;
     }
     else {
