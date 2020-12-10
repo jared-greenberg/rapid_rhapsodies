@@ -5,7 +5,7 @@ class Game {
   constructor(songLength, level, ctx) {
     this.board = new Board(songLength, level, ctx)
     this.score = 0;
-    this.seconds = 59;
+    this.seconds = 29;
     this.scoreElement = document.getElementById("score");
     this.timerElement = document.getElementById("timer");
   }
@@ -47,10 +47,15 @@ class Game {
   // organizes errors flashing
   flashErrors(xOr){
     let count = 0;
+    this.board.clearErrors();
+    this.board.rows[this.board.position].drawRow(420 - 99);
     this.board.drawErrors(xOr)
     const flash = setInterval(() => {
       if (count === 5){
         clearInterval(flash);
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
       }
       else if (count % 2 !== 0){
         this.board.drawErrors(xOr)
@@ -64,8 +69,11 @@ class Game {
   }
 
   quit(){
+    debugger
     clearInterval(this.interval);
-    this.timerElement.innerHTML = 60;
+    this.timerElement.style.color = "white";
+    this.timerElement.innerHTML = 30;
+    this.timerElement.classList.remove("flashing");
     this.scoreElement.innerHTML = 0;
   }
 

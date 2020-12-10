@@ -13,9 +13,27 @@
 
 <section class="instructions-panel">
   
-  <div class=instructions>
-    <p>Rules</p>
-    <p>Image</p>
+  <h3>Rapid Rhapsodies</h3>
+  <div class=top-panel>
+    <div class="drop-down">
+      Instructions
+      <ul>
+        <li>
+          <h3>Objective</h3>
+          <p>Press as many correct key-combinations before the time runs out. 
+            The timer will start when you make the first correct move.
+            Any incorrect combos will prevent you from continuing for about 3 seconds.
+            Notes that you missed will be highlighted in white and ones that were extra will be red.
+          </p>
+          <h3>Levels</h3>
+          <p>Each level has a maximum number of keys per move.</p>
+          <p>Easy: 1</p>
+          <p>Medium: 2</p>
+          <p>Hard: 3</p>
+        </li>
+      </ul>
+    </div>
+
   </div>
 
   <div class="links">
@@ -72,10 +90,10 @@
   <div class="canvas-wrapper">
   <canvas height="420" width="500" id="game-board"></canvas>
     <div class="game-info">
-      <button id="quit">Quit</button>
+      <button id="quit">Menu</button>
       <div class="timer-container">
         <h3>Time</h3>
-        <div id="timer">60</div>
+        <div id="timer">30</div>
       </div>
       <div class="score-container">
         <h3>Score</h3>
@@ -86,15 +104,15 @@
 
 
   <div id="piano-keys">
-    <div class="player-key blue"></div>
+    <div class="player-key blue"><h3>A</h3></div>
     <div class="black-key"></div>
-    <div class="player-key pink"></div>
+    <div class="player-key pink"><h3>S</h3></div>
     <div class="black-key"></div>
-    <div class="player-key yellow"></div>
+    <div class="player-key yellow"><h3>D</h3></div>
     <div class="black-key"></div>
-    <div class="player-key orange"></div>
+    <div class="player-key orange"><h3>F</h3></div>
     <div class="black-key"></div>
-    <div class="player-key green"></div>
+    <div class="player-key green"><h3>G</h3></div>
   </div>
 </section>
   

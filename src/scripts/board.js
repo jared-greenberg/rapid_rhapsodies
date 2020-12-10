@@ -45,7 +45,8 @@ class Board {
   }
   
   clearErrors(){
-    this.ctx.clearRect(70, 395, 500 - 70, 500 - 395 )
+    this.ctx.clearRect(0, 310, 500, 109);
+    debugger
   }
 
   nextMove(){

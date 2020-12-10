@@ -22,6 +22,7 @@
     }
 
   
+  
 
      #piano-keys {
       display: flex;
@@ -36,7 +37,22 @@
       border: 1px solid black;
       background: #FAF9F1;
       border: outset;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      > h3 {
+        padding-bottom: 15px;
+        color: #51514D;
+        font-size: 18px;
+      }
+    
     }
+
+    h3{
+        font-family: 'Dancing Script', cursive;
+        font-size: 28px;
+      }
 
     .black-key {
       height: 120px;
@@ -72,16 +88,14 @@
       background: #AFFF33;
     }
 
-    .timer-container, .score-container{
-      border: 1px solid white;
-    }
 
     #timer, #score{
-      font-size: 24px;
+      font-size: 30px;
+      width: 150px;
     }
 
     .timer-container{
-      margin-top: 100px;
+      margin-top: 50px;
     }
 
     .score-container{
@@ -124,6 +138,7 @@
 
     .instructions-panel{
       background: black;
+      color: white;
     }
 
     #title{
@@ -216,6 +231,8 @@
      50% {opacity: 0;}
      99% {opacity: 0;}
     }
+
+    
   
 
     

@@ -7,10 +7,14 @@ import Songs from './scripts/songs';
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
 
-
+function drawBox(){
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
+}
 
 function draw(){
-  ctx.clearRect(70, 0, canvas.width-70 , canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   let rowY = y;
   // TODO change this to for loop to exit early?
   game.board.rows.forEach(row => {
@@ -20,22 +24,20 @@ function draw(){
     }
     rowY -= 103;
   })
-  
   // 103 / 8 to make sure we hit the 103
   y += 12.875 
-
+  drawBox();
 
   if ((y - 321 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
   }
- 
+   
 }
 
 
 let paused = false;
 
 const makeMove = keysDown => {
-  debugger
   keysDown = parseInt(keysDown.join(""), 2);
   if (game.checkMove(keysDown)){
     if (!started){
@@ -50,7 +52,9 @@ const makeMove = keysDown => {
     game.flashErrors(game.board.currentMove() ^ keysDown);
     playError();
     paused = true;
-    setTimeout( () => paused = false, 2800)
+    setTimeout( () => {
+      paused = false
+      drawBox() }, 2500)
   }
 }
 
@@ -63,7 +67,6 @@ let keysDown = [0, 0, 0, 0, 0];
 
 document.addEventListener('keydown', (e) => {
   if (paused || game.gameOver()) return;
-  debugger
   const idx = keys[e.key]
   if (idx === undefined || keysDown[idx] === 1) return;
   keysDown[idx] = 1;
@@ -130,6 +133,7 @@ function playError(){
 }
 
 quit.addEventListener('click', (e) => {
+  debugger
   e.preventDefault();
   menu.classList.remove('hidden');
   game.quit();
