@@ -5,23 +5,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <title>Project Name</title>
 </head>
 
 <body>
 
 <section class="instructions-panel">
-  Instructions
+  <h1 id="title">Rapid Rhapsodies</h1>
+  <div class=instructions>
+    <p>Rules</p>
+    <p>Image</p>
+  </div>
+
+  <div class="links">
+
+  </div>
 </section>
 
 <section class="game-or-menu-container">
   <div id="menu-background">
     <div class="menu-container">
 
-      <img id="big-logo" src="./src/assets/logo2.png" alt="logo"/>
+      <img id="big-logo" src="./src/assets/logo1.png" alt="logo"/>
       
-      <form class="selection">
-       
+      <form class="menu-form">
+        <div class="selection" >
         <div class="song-titles">
           <h2>Select Song</h2>
           <input id="odeToJoy" name="song" checked value="odeToJoy" type="radio" />
@@ -35,7 +44,7 @@
         </div>
 
         <div class="levels">
-          <h2>Select Difficulty</h2>
+          <h2>Select Level</h2>
 
           
           <input id="easy" name="level"  checked value="1" type="radio"/>
@@ -47,6 +56,7 @@
           <input id="hard"  name="level" value="3" type="radio"/>
           <label for="hard">Hard</label>
 
+        </div>
         </div>
 
         <input id="start-game" type="submit" value="Play">
@@ -83,13 +93,8 @@
     <div class="player-key green"></div>
   </div>
 </section>
-  <img id="blue" src="./src/assets/spritesheet.png" style="display: none;">
-
   
 
-  <style>
-  
-  </style>
 
   <script src="./dist/main.js"></script>
   <link rel="stylesheet" href="./dist/main.css" />

@@ -24,7 +24,8 @@ class Board {
   }
 
   drawErrors(xOr){
-    
+  
+  
   for (let box = 0; box < 5; box++){
     
     if ((xOr & (2 ** box)) === (2 ** box)) {
@@ -36,7 +37,7 @@ class Board {
       else{
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(357 - (70 * box), 420 - 98, 67, 86);
-        this.rows[this.position].drawMusicNotes(320)
+        this.rows[this.position].drawMusicNotes(320);
       }
       
     }

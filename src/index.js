@@ -3,7 +3,7 @@ import Game from './scripts/game';
 import './styles/index.scss';
 import Songs from './scripts/songs';
 
-//
+
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
 
@@ -48,7 +48,7 @@ const makeMove = keysDown => {
     if (!started) return;
     playError();
     paused = true;
-    setTimeout( () => paused = false, 3000)
+    setTimeout( () => paused = false, 2800)
   }
 }
 
@@ -80,7 +80,7 @@ let song, level;
 const audioCtx = new AudioContext();
 let errorSource, noteSource;
 let i = 0;
-let started = false;
+let started;
 let y;
 let game;
 
@@ -91,11 +91,11 @@ startButton.addEventListener('click', (e) => {
   menu.classList.add('hidden');
   song = document.querySelector('input[name="song"]:checked').value;
   level = document.querySelector('input[name="level"]:checked').value;
-  debugger
-   i = 0;
+  i = 0;
   loadNextNote(Songs[song][i]);
   loadNextNote('wrong', true);  
   game = new Game(Songs[song].length, level, ctx);
+  started = false;
   y = canvas.height - 99;
   draw();
 })
