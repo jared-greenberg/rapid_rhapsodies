@@ -14,21 +14,26 @@ class Game {
 
   // keeps track of time
   startTimer(){
-    this.timerElement.innerHTML = this.seconds;
+    this.showTime();
   
      this.interval = setInterval(() => {
       this.seconds--;
       if (this.seconds === -1) {
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
-        this.timerElement.innerHTML = "Times Up!";
+        this.showTime("Times Up!");
         
         clearInterval(this.interval);
       } else {
-        this.timerElement.innerHTML = this.seconds;
+        this.showTime();
       }
     }, 1000);
 
+  }
+
+  showTime(text){
+    let display = text ? text : this.seconds;
+    this.timerElement.innerHTML = display;
   }
 
   showScore(){
@@ -58,9 +63,6 @@ class Game {
     const flash = setInterval(() => {
       if (count === 5){
         clearInterval(flash);
-        ctx.strokeStyle = "red";
-        ctx.lineWidth = 2;
-        ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
       }
       else if (count % 2 !== 0){
         this.board.drawErrors(xOr)
@@ -74,12 +76,12 @@ class Game {
   }
 
   quit(){
-    debugger
     clearInterval(this.interval);
     this.timerElement.style.color = "white";
     this.timerElement.innerHTML = 30;
     this.timerElement.classList.remove("flashing");
     this.scoreElement.innerHTML = 0;
+    this.seconds = -1;
   }
 
   // game ends when there are no more moves or the timer runs out.
