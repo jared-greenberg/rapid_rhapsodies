@@ -35,6 +35,7 @@ function draw(){
 let paused = false;
 
 const makeMove = keysDown => {
+  debugger
   keysDown = parseInt(keysDown.join(""), 2);
   if (game.checkMove(keysDown)){
     if (!started){
@@ -46,6 +47,7 @@ const makeMove = keysDown => {
   }
   else {
     if (!started) return;
+    game.flashErrors(game.board.currentMove() ^ keysDown);
     playError();
     paused = true;
     setTimeout( () => paused = false, 2800)
@@ -61,6 +63,7 @@ let keysDown = [0, 0, 0, 0, 0];
 
 document.addEventListener('keydown', (e) => {
   if (paused || game.gameOver()) return;
+  debugger
   const idx = keys[e.key]
   if (idx === undefined || keysDown[idx] === 1) return;
   keysDown[idx] = 1;
@@ -74,7 +77,7 @@ document.addEventListener('keyup', (e) => {
 })
 
 const menu = document.getElementById("menu-background");
-const startButton = document.getElementById("start-game");
+const startButton = document.getElementById("play-button");
 const quit = document.getElementById("quit");
 let song, level;
 const audioCtx = new AudioContext();

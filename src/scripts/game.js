@@ -19,7 +19,9 @@ class Game {
       this.seconds--;
       if (this.seconds === -1) {
         this.timerElement.style.color = "red";
+        this.timerElement.classList.add("flashing");
         this.timerElement.innerHTML = "Times Up!";
+        
         clearInterval(this.interval);
       } else {
         this.timerElement.innerHTML = this.seconds;
@@ -38,7 +40,6 @@ class Game {
       return true;
     }
     else {
-      this.flashErrors(xOr);
       return false;
     }
   }
