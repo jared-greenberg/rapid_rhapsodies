@@ -11,34 +11,50 @@
 
 <body>
 
-<section class="instructions-panel">
+<section class="left-panel">
   
-  <h3>Rapid Rhapsodies</h3>
-  <div class=top-panel>
-    <div class="drop-down">
-      Instructions
-      <ul>
-        <li>
+  <h3 id="left-title">Rapid Rhapsodies</h3>
+  <div class=instructions-panel>
+      <div>
+          <h3>Object of the Game</h3>
+          <p>Clear as many rows as possible before the timer runs out!</p>
+      </div>
+      <div>
           <h3>Game Play</h3>
-          <p>To begin, press the piano keys that correspond to the notes in the red box.
-             The timer will start and you have 30 seconds to accurately match as many rows
-             of notes as possible. Incorrect matches will delay your game.
-          </p>
+          <p>To clear a row, you must play all music notes within the green box by activating the
+            piano keys directly below them. If multiple notes appear in the same row, you must play them all simultaneously. 
+            The timer will begin counting down when you play your first correct note. </p>
+      </div>
+      <div>
+          <h3>Controls</h3>
+          <p>You control the piano by pressing A, S, D, F, or G on your computer's keyboard. The piano keys are labelled with the letter
+            that will activate them. To play multinote combinations, all keyboard keys must be pressed at exactly the same time.</p>
+      </div>
+      <div>
           <h3>Errors</h3>
-          <p>If you make a mistake, missed keys will be highlighted in white and incorrect keys 
-            will be highlighted in red. You will be able to resume after the red box reappears.</p>
-          <h3>Levels</h3>
-          <p>As you increase the level of difficulty the maximum number of notes per row increase:</p>
-            <p>Easy (1), Medium (2), or Hard (3). </p>
-        </li>
-      </ul>
-    </div>
-
+          <p>Pressing incorrect keys or failing to play all notes in the row will result 
+            in a penalty delay. During the penalty delay you will not be able to play any notes.
+            You will only be able to resume play when the green box reappears.
+          </p>
+      </div>
+      <div>
+          <h3>Difficulty</h3>
+          <p>The level of difficulty corresponds to the maximum number of notes that could appear in any row:
+            Easy - 1, Medium - 2, Hard - 3.
+          </p>
+      </div>
+    
   </div>
 
   <div class="links">
-
+    <a class="icon" href="https://github.com/jared-greenberg/">
+      <img src="./src/assets/github.png" alt="github"/>
+    </a>
+    <a class="icon" href="https://www.linkedin.com/in/jared-greenberg-996a581b4/">
+      <img src="./src/assets/linked_in.png" alt="linked in"/>
+    </a>
   </div>
+
 </section>
 
 <section class="game-or-menu-container">
@@ -117,7 +133,7 @@
 </section>
   
 
-
+  <audio src="./src/assets/notes/bumblebee.mp3" loop id="theme"></audio>
   <script src="./dist/main.js"></script>
   <link rel="stylesheet" href="./dist/main.css" />
 </body>

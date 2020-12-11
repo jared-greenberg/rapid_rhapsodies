@@ -6,9 +6,11 @@ import Songs from './scripts/songs';
 
 const canvas = document.getElementById('game-board');
 const ctx = canvas.getContext("2d");
+const theme = document.getElementById('theme');
+
 
 function drawBox(){
-  ctx.strokeStyle = "red";
+  ctx.strokeStyle = "green";
   ctx.lineWidth = 2;
   ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
 }
@@ -90,7 +92,7 @@ let started;
 let y;
 let game;
 
-
+theme.play();
 
 startButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -104,6 +106,7 @@ startButton.addEventListener('click', (e) => {
   started = false;
   y = canvas.height - 99;
   draw();
+  theme.pause();
 })
 
 
@@ -133,11 +136,24 @@ function playError(){
 }
 
 quit.addEventListener('click', (e) => {
-  debugger
   e.preventDefault();
   menu.classList.remove('hidden');
   game.quit();
+  theme.currentTime = 0;  
+  theme.play();
 })
+
+window.addEventListener('blur', (e) => {
+  e.preventDefault();
+  theme.pause();
+})
+
+window.addEventListener('focus', (e) => {
+  e.preventDefault();
+  theme.play();
+})
+
+
 
 
 
