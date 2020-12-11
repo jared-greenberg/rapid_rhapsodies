@@ -70,7 +70,7 @@ class Game {
       }
       else {
         this.board.clearErrors();
-        this.board.rows[this.board.position].drawRow(420 - 99);
+        this.board.rows[this.board.position].drawRow(420 - 99, true);
       }
       count++
     }, 500);

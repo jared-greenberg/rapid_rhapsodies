@@ -22,7 +22,7 @@ function draw(){
   game.board.rows.forEach(row => {
     // only draw the rows on the grid, can optimize with a for loop and break?
     if (rowY > -103 && rowY < canvas.height){
-      row.drawRow(rowY);
+      !started ? row.bounceNotes(rowY) : row.drawRow(rowY, true);
     }
     rowY -= 103;
   })
@@ -32,8 +32,8 @@ function draw(){
 
   if ((y - 321 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
-  }
-   
+  } 
+ 
 }
 
 

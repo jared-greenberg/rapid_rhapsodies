@@ -45,6 +45,10 @@ class Board {
     }
   }
   }
+
+  // stopBounces(){
+  //   this.rows.forEach(row => row.stopBouncing())
+  // }
   
   clearErrors(){
     this.ctx.clearRect(0, 310, 500, 109);
@@ -54,6 +58,7 @@ class Board {
   nextMove(){
     this.position++;
   }
+
 
 }
 

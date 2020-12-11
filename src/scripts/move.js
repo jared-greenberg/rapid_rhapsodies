@@ -6,6 +6,9 @@ class Move {
     this.ctx = ctx;
     this.blue = document.getElementById("blue")
     this.pos = 0;
+    this.bouncing;
+    this.i = 0;
+    // this.bounced = false;
   }
 
   static createRow(level){
@@ -24,7 +27,7 @@ class Move {
     return row;
   }
 
-  drawRow(y){
+  drawRow(y, stop){
     this.ctx.beginPath();
     this.ctx.fillStyle = "#51514D";
     this.ctx.strokeStyle = "black";
@@ -68,24 +71,20 @@ class Move {
     this.ctx.lineTo(431, y+82);
     this.ctx.lineTo(431, y+88);
     this.ctx.fill();
-      this.ctx.restore();
+    this.ctx.restore();
     
-
-    this.drawMusicNotes(y);
+    if (stop) {
+      clearInterval(this.bouncing)
+      this.drawMusicNotes(y);
+   
+    }
+   
   }
 
-  // drawMusicNotes(y){
-   
-  //   this.ctx.drawImage(this.blue, (this.pos % 17) * 72, 0, 70, 70, 75, y, 70, 70)
-  //   this.pos++;
-  //   setTimeout(()=>{
-  //     this.ctx.clearRect(75, y, 70, 70);
-  //     requestAnimationFrame(() => this.drawMusicNotes(y));
-  //   }, 300)
-  // }
+  
 
   drawMusicNotes(y){
-    const colors = ['#33FCFF', '#AF33FF', '#FFD700', '#FF8D33', '#AFFF33']
+    const colors = ['#33FCFF', '#AF33FF', '#E5FE15', '#FF8D33', '#AFFF33']
     this.row.forEach((slot, i) => {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
@@ -108,6 +107,16 @@ class Move {
     })
   }
 
+
+  bounceNotes(y){
+   const diff = [2, 4, 6, 8, 10, 8, 6, 4, 2, 0];
+    this.bouncing = setInterval(() => {
+      this.drawRow(y)
+      this.drawMusicNotes(y - diff[this.i % 10]);
+      this.i++;
+    }, 100);
+    this.bounced = true;
+  }
 
 }
 
