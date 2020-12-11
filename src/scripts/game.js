@@ -48,6 +48,10 @@ class Game {
       this.board.nextMove();
       this.score++;
       this.showScore();
+      if (this.score === this.board.length) {
+        clearInterval(this.interval)
+        this.showTime("Perfect Score!");
+      }
       return true;
     }
     else {
