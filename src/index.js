@@ -9,6 +9,13 @@ const ctx = canvas.getContext("2d");
 const theme = document.getElementById('theme');
 
 
+const cover = document.getElementById('open-modal-background');
+cover.addEventListener("click", () => {
+  cover.classList.add("hidden");
+  theme.play();
+})
+
+
 function drawBox(){
   ctx.strokeStyle = "green";
   ctx.lineWidth = 2;
@@ -93,7 +100,8 @@ let started;
 let y;
 let game;
 
-theme.play();
+
+
 
 startButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -149,11 +157,6 @@ window.addEventListener('blur', (e) => {
   theme.pause();
 })
 
-window.addEventListener('focus', (e) => {
-  if (menu.classList.contains("hidden")) return;
-  e.preventDefault();
-  theme.play();
-})
 
 
 
