@@ -21,8 +21,9 @@ class Game {
       if (this.seconds === -1) {
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
+        this.board.clearErrors();
+        this.board.rows[this.board.position].drawRow(420-99);
         this.showTime("Times Up!");
-        
         clearInterval(this.interval);
       } else {
         this.showTime();
@@ -86,10 +87,9 @@ class Game {
 
   // game ends when there are no more moves or the timer runs out.
   gameOver() {
-    return this.board.position === this.board.length || this.seconds === -1
+    return this.board.position === this.board.length || this.seconds === -1 || this.score === this.board.length
   }
 
- 
 
 }
 

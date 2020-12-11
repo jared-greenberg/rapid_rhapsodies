@@ -28,7 +28,7 @@ function draw(){
   })
   // 103 / 8 to make sure we hit the 103
   y += 12.875 
-  drawBox();
+  if (!game.gameOver()) drawBox();
 
   if ((y - 321 - 12.875) % 103 !== 0) {
     requestAnimationFrame(draw);
@@ -47,8 +47,8 @@ const makeMove = keysDown => {
     started = true;
   }
     playTone();
-    draw();
-  }
+    draw();  
+}
   else {
     if (!started) return;
     game.flashErrors(game.board.currentMove() ^ keysDown);
@@ -56,11 +56,12 @@ const makeMove = keysDown => {
     paused = true;
     setTimeout( () => {
       paused = false
-      drawBox() }, 2500)
+      if (!game.gameOver()) drawBox();
+     }, 2500)
   }
 }
 
-const debouncedMakeMove = debounce(makeMove, 50);
+const debouncedMakeMove = debounce(makeMove, 40);
 
 const keyElements = document.querySelectorAll('.player-key');
 const keys = {'a': 0, 's': 1, 'd': 2, 'f': 3, 'g': 4}
@@ -149,6 +150,7 @@ window.addEventListener('blur', (e) => {
 })
 
 window.addEventListener('focus', (e) => {
+  if (menu.classList.contains("hidden")) return;
   e.preventDefault();
   theme.play();
 })

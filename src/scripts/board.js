@@ -9,6 +9,7 @@ class Board {
     this.rows = Board.initializeBoard(songLength, level, ctx);
     this.length = this.rows.length;
     this.position = 0;
+    this.angry = document.getElementById("angry");
   }
 
   static initializeBoard(songLength, level, ctx) {
@@ -37,6 +38,7 @@ class Board {
       else{
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(357 - (70 * box), 420 - 98, 67, 86);
+        this.ctx.drawImage(this.angry, 0, 0, 50, 50, 402 - (70 * box), 315, 50, 50)
         this.rows[this.position].drawMusicNotes(320);
       }
       

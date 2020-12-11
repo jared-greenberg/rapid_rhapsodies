@@ -40,7 +40,7 @@
       <div>
           <h3>Difficulty</h3>
           <p>The level of difficulty corresponds to the maximum number of notes that could appear in any row:
-            Easy - 1, Medium - 2, Hard - 3.
+            Beginner - 1, Intermediate - 2, Virtuoso - 3.
           </p>
       </div>
     
@@ -83,13 +83,13 @@
 
           
           <input id="easy" name="level"  checked value="1" type="radio"/>
-          <label for="easy">Easy</label>
+          <label for="easy">Beginner</label>
           
           <input id="medium" name="level"  value="2" type="radio"/>
-          <label for="medium"> Medium</label>
+          <label for="medium"> Intermediate</label>
           
           <input id="hard"  name="level" value="3" type="radio"/>
-          <label for="hard">Hard</label>
+          <label for="hard">Virtuoso</label>
 
         </div>
         </div>
@@ -134,6 +134,7 @@
   
 
   <audio src="./src/assets/notes/bumblebee.mp3" loop id="theme"></audio>
+  <img src="./src/assets/angry.png" id="angry" style="display: none;"/>
   <script src="./dist/main.js"></script>
   <link rel="stylesheet" href="./dist/main.css" />
 </body>
