@@ -85,7 +85,7 @@ class Move {
   // }
 
   drawMusicNotes(y){
-    const colors = ['#33FCFF', '#AF33FF', '#E5FE15', '#FF8D33', '#AFFF33']
+    const colors = ['#33FCFF', '#AF33FF', '#FFD700', '#FF8D33', '#AFFF33']
     this.row.forEach((slot, i) => {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
