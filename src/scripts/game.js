@@ -87,6 +87,8 @@ class Game {
     this.timerElement.classList.remove("flashing");
     this.scoreElement.innerHTML = 0;
     this.seconds = -1;
+    this.board.rows.forEach (row => clearInterval(row.bouncing))
+    
   }
 
   // game ends when there are no more moves or the timer runs out.
