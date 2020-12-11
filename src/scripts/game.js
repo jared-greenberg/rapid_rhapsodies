@@ -23,7 +23,7 @@ class Game {
         this.timerElement.classList.add("flashing");
         this.board.clearErrors();
         this.board.rows[this.board.position].drawRow(420-99);
-        this.showTime("Times Up!");
+        this.showTime("Time's Up!");
         clearInterval(this.interval);
       } else {
         this.showTime();
