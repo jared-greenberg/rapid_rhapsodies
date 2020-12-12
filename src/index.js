@@ -157,6 +157,10 @@ window.addEventListener('blur', (e) => {
   theme.pause();
 })
 
+window.addEventListener('focus', (e) => {
+
+})
+
 
 
 

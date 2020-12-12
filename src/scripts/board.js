@@ -39,7 +39,7 @@ class Board {
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(357 - (70 * box), 420 - 98, 67, 86);
         this.ctx.drawImage(this.angry, 0, 0, 50, 50, 402 - (70 * box), 315, 50, 50)
-        this.rows[this.position].drawMusicNotes(320);
+        this.rows[this.position].drawMusicNotes(321);
       }
       
     }

@@ -22,7 +22,7 @@ class Game {
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
         this.board.clearErrors();
-        this.board.rows[this.board.position].drawRow(420-99);
+        this.board.rows[this.board.position].drawRow(420-99, true);
         this.showTime("Time's Up!");
         clearInterval(this.interval);
       } else {
@@ -63,7 +63,7 @@ class Game {
   flashErrors(xOr){
     let count = 0;
     this.board.clearErrors();
-    this.board.rows[this.board.position].drawRow(420 - 99);
+    this.board.rows[this.board.position].drawRow(420 - 99, true);
     this.board.drawErrors(xOr)
     const flash = setInterval(() => {
       if (count === 5){
@@ -93,7 +93,7 @@ class Game {
 
   // game ends when there are no more moves or the timer runs out.
   gameOver() {
-    return this.board.position === this.board.length || this.seconds === -1 || this.score === this.board.length
+    return this.seconds === -1 || this.score === this.board.length
   }
 
 
