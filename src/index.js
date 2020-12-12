@@ -2,6 +2,7 @@ import debounce from 'lodash/debounce';
 import Game from './scripts/game';
 import './styles/index.scss';
 import Songs from './scripts/songs';
+import { SoundEffect, NotePlayer } from './scripts/soundeffect';
 
 
 const canvas = document.getElementById('game-board');
@@ -53,13 +54,13 @@ const makeMove = keysDown => {
     game.startTimer();
     started = true;
   }
-    playTone();
+    notePlayer.playSound();
     draw();  
 }
   else {
     if (!started) return;
     game.flashErrors(game.board.currentMove() ^ keysDown);
-    playError();
+    errorPlayer.playSound();
     paused = true;
     setTimeout( () => {
       paused = false
@@ -96,7 +97,7 @@ const quit = document.getElementById("quit");
 
 let song, level;
 const audioCtx = new AudioContext();
-let errorSource, noteSource;
+let notePlayer, errorPlayer;
 let i = 0;
 let started;
 let y;
@@ -111,8 +112,8 @@ startButton.addEventListener('click', (e) => {
   song = document.querySelector('input[name="song"]:checked').value;
   level = document.querySelector('input[name="level"]:checked').value;
   i = 0;
-  loadNextNote(Songs[song][i]);
-  loadNextNote('wrong', true);  
+  notePlayer = new NotePlayer(audioCtx, song);
+  errorPlayer = new SoundEffect(audioCtx, 'wrong');
   game = new Game(Songs[song].length, level, ctx);
   started = false;
   y = canvas.height - 99;
@@ -121,30 +122,7 @@ startButton.addEventListener('click', (e) => {
 })
 
 
-function loadNextNote(str, error){
-  let source = audioCtx.createBufferSource();
-  fetch(`./src/assets/notes/${str}.mp3`)
-    .then(response => response.arrayBuffer())
-    .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
-    .then(buffer => {
-      source.buffer = buffer;
-      source.connect(audioCtx.destination);
-      error ? errorSource = source : noteSource = source;
-    } )
-}
 
-function playTone(){
-  noteSource.start();
-  i++;
-  if (i !== game.board.length){
-  loadNextNote(Songs[song][i]);
-  }
-}
-
-function playError(){
-  errorSource.start();
-  loadNextNote('wrong', true);
-}
 
 quit.addEventListener('click', (e) => {
   e.preventDefault();
