@@ -1,3 +1,4 @@
+
 // Creates each row of the board
 class Move {
 
@@ -5,10 +6,8 @@ class Move {
     this.row = Move.createRow(level);
     this.ctx = ctx;
     this.blue = document.getElementById("blue")
-    this.pos = 0;
+   
     this.bouncing;
-    this.i = 0;
-    // this.bounced = false;
   }
 
   static createRow(level){
@@ -76,12 +75,9 @@ class Move {
     if (stop) {
       clearInterval(this.bouncing)
       this.drawMusicNotes(y);
-   
     }
    
   }
-
-  
 
   drawMusicNotes(y){
     const colors = ['#33FCFF', '#AF33FF', '#E5FE15', '#FF8D33', '#AFFF33']
@@ -109,13 +105,14 @@ class Move {
 
 
   bounceNotes(y){
-   const diff = [2, 4, 6, 8, 10, 8, 6, 4, 2, 0];
+    const diff = [2, 4, 6, 8, 10, 8, 6, 4, 2, 0];
+    let i = 0;
+
     this.bouncing = setInterval(() => {
       this.drawRow(y)
-      this.drawMusicNotes(y - diff[this.i % 10]);
-      this.i++;
+      this.drawMusicNotes(y - diff[i % 10]);
+      i++;
     }, 100);
-    this.bounced = true;
   }
 
 }
