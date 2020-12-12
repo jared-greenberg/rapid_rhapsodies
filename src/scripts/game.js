@@ -7,8 +7,9 @@ class Game {
     this.score = 0;
     this.seconds = 29;
     this.scoreElement = document.getElementById("score");
-    this.showScore();
     this.timerElement = document.getElementById("timer");
+    
+    this.showScore();
   }
 
 
@@ -21,7 +22,7 @@ class Game {
       if (this.seconds === -1) {
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
-        this.board.clearErrors();
+        this.board.clearCurrentRow();
         this.board.rows[this.board.position].drawRow(420-99, true);
         this.showTime("Time's Up!");
         clearInterval(this.interval);
@@ -62,7 +63,7 @@ class Game {
   // organizes errors flashing
   flashErrors(xOr){
     let count = 0;
-    this.board.clearErrors();
+    this.board.clearCurrentRow();
     this.board.rows[this.board.position].drawRow(420 - 99, true);
     this.board.drawErrors(xOr)
     const flash = setInterval(() => {
@@ -73,7 +74,7 @@ class Game {
         this.board.drawErrors(xOr)
       }
       else {
-        this.board.clearErrors();
+        this.board.clearCurrentRow();
         this.board.rows[this.board.position].drawRow(420 - 99, true);
       }
       count++
@@ -86,12 +87,11 @@ class Game {
     this.timerElement.innerHTML = 30;
     this.timerElement.classList.remove("flashing");
     this.scoreElement.innerHTML = 0;
-    this.seconds = -1;
-    this.board.rows.forEach (row => clearInterval(row.bouncing))
     
+    // forces gameover
+    this.seconds = -1;
   }
 
-  // game ends when there are no more moves or the timer runs out.
   gameOver() {
     return this.seconds === -1 || this.score === this.board.length
   }

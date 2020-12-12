@@ -92,6 +92,8 @@ document.addEventListener('keyup', (e) => {
 const menu = document.getElementById("menu-background");
 const startButton = document.getElementById("play-button");
 const quit = document.getElementById("quit");
+
+
 let song, level;
 const audioCtx = new AudioContext();
 let errorSource, noteSource;

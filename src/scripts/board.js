@@ -50,7 +50,7 @@ class Board {
   //   this.rows.forEach(row => row.stopBouncing())
   // }
   
-  clearErrors(){
+  clearCurrentRow(){
     this.ctx.clearRect(0, 310, 500, 109);
   }
 
