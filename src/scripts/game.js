@@ -20,17 +20,22 @@ class Game {
      this.interval = setInterval(() => {
       this.seconds--;
       if (this.seconds === -1) {
+        this.showTimesUp();
+        clearInterval(this.interval);
+      } 
+      else {
+        this.showTime();
+      }
+    }, 1000);
+
+  }
+
+  showTimesUp(){
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
         this.board.clearCurrentRow();
         this.board.rows[this.board.position].drawRow(420-99, true);
         this.showTime("Time's Up!");
-        clearInterval(this.interval);
-      } else {
-        this.showTime();
-      }
-    }, 1000);
-
   }
 
   showTime(text){
@@ -87,8 +92,7 @@ class Game {
     this.timerElement.innerHTML = 30;
     this.timerElement.classList.remove("flashing");
     this.scoreElement.innerHTML = 0;
-    
-    // forces gameover
+    this.board.rows.forEach(row => clearInterval(row.bouncing))
     this.seconds = -1;
   }
 

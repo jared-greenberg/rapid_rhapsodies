@@ -46,11 +46,8 @@ class Board {
   }
   }
 
-  // stopBounces(){
-  //   this.rows.forEach(row => row.stopBouncing())
-  // }
   
-  clearCurrentRow(){
+    clearCurrentRow(){
     this.ctx.clearRect(0, 310, 500, 109);
   }
 
