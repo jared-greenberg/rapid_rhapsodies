@@ -1,6 +1,6 @@
+import './styles/index.scss';
 import debounce from 'lodash/debounce';
 import Game from './scripts/game';
-import './styles/index.scss';
 import Songs from './scripts/songs';
 import { SoundEffect, NotePlayer } from './scripts/soundeffect';
 
@@ -29,35 +29,6 @@ window.addEventListener('focus', (e) => {
 
 
 
-// function drawBox(){
-//   ctx.strokeStyle = "green";
-//   ctx.lineWidth = 2;
-//   ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
-// }
-
-// function draw(){
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   let rowY = y;
-//   // TODO change this to for loop to exit early?
-//   game.board.rows.forEach(row => {
-//     // only draw the rows on the grid, can optimize with a for loop and break?
-//     if (rowY > -103 && rowY < canvas.height){
-//       (game.board.position < 1) ? row.bounceNotes(rowY) : row.drawRow(rowY, true);
-//     }
-//     rowY -= 103;
-//   })
-//   // 103 / 8 to make sure we hit the 103
-//   y += 12.875 
-
-//   if (!game.gameOver()) drawBox();
-
-//   if ((y - 321 - 12.875) % 103 !== 0) {
-//     requestAnimationFrame(draw);
-//   } 
- 
-// }
-
-
 let paused = false;
 
 const makeMove = keysDown => {
@@ -77,6 +48,8 @@ const makeMove = keysDown => {
 }
 
 const debouncedMakeMove = debounce(makeMove, 40);
+
+
 
 const keyElements = document.querySelectorAll('.player-key');
 const keys = {'a': 0, 's': 1, 'd': 2, 'f': 3, 'g': 4}
@@ -106,9 +79,6 @@ document.addEventListener('keyup', (e) => {
 let song, level;
 const audioCtx = new AudioContext();
 let notePlayer, errorPlayer;
-
-
-let y;
 let game;
 
 const menuModal = document.getElementById("menu-background");

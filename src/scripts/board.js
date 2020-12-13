@@ -9,6 +9,7 @@ class Board {
     this.rows = Board.initializeBoard(songLength, level, ctx);
     this.length = this.rows.length;
     this.position = 0;
+    // graphic for missed notes
     this.angry = document.getElementById("angry");
   }
 
@@ -19,6 +20,11 @@ class Board {
     }
     return rows;
   }
+
+  nextMove(){
+    this.position++;
+  }
+
 
   currentMoveValue(){
     return parseInt(this.rows[this.position].arr.join(""), 2);
@@ -69,10 +75,6 @@ class Board {
   clearCurrentRow(){
     this.ctx.clearRect(0, 310, 500, 109);
   }
-
-    nextMove(){
-      this.position++;
-    }
 
 
 }

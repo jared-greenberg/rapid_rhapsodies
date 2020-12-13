@@ -38,9 +38,11 @@ class Game {
   showTimesUp(){
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
-        this.board.clearCurrentRow();
-        this.board.rows[this.board.position].drawRow(420-99, true);
         this.showTime("Time's Up!");
+
+        // to remove the green box
+        this.board.clearCurrentRow();
+        this.board.rows[this.board.position].drawRow(420-99, true); 
   }
 
   showTime(text){
