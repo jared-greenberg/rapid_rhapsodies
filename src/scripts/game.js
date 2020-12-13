@@ -8,7 +8,6 @@ class Game {
     this.seconds = 29;
     this.scoreElement = document.getElementById("score");
     this.timerElement = document.getElementById("timer");
-    
     this.showScore();
   }
 
@@ -76,13 +75,14 @@ class Game {
 
 
   quit(){
+    // stop timer
     clearInterval(this.interval);
     this.timerElement.style.color = "white";
     this.timerElement.innerHTML = 30;
     this.timerElement.classList.remove("flashing");
-    this.scoreElement.innerHTML = 0;
-    this.board.rows.forEach(row => clearInterval(row.bouncing))
     this.seconds = -1;
+    // stop bouncing if user quits before starting
+    this.board.rows.forEach(row => clearInterval(row.bouncing))
   }
 
   gameOver() {

@@ -24,6 +24,7 @@ class Board {
     return parseInt(this.rows[this.position].arr.join(""), 2);
   }
 
+
   drawErrors(xOr){
     for (let box = 0; box < 5; box++){
       
@@ -43,6 +44,7 @@ class Board {
       }
     }
   }
+
 
    flashErrors(xOr){
     let count = 0;
@@ -64,8 +66,7 @@ class Board {
     }, 500);
   }
 
-  
-    clearCurrentRow(){
+  clearCurrentRow(){
     this.ctx.clearRect(0, 310, 500, 109);
   }
 

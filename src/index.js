@@ -14,7 +14,7 @@ const splash = document.getElementById('open-modal-background');
 
 splash.addEventListener("click", () => {
   splash.classList.add("hidden");
-  // theme.play();
+  theme.play();
 })
 
 window.addEventListener('blur', (e) => {
@@ -24,7 +24,7 @@ window.addEventListener('blur', (e) => {
 
 window.addEventListener('focus', (e) => {
   e.preventDefault();
-  // theme.play();
+  theme.play();
 })
 
 
