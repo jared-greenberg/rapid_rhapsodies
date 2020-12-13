@@ -5,7 +5,11 @@ class SoundEffect {
   constructor(audioCtx, fileName) {
     this.audioCtx = audioCtx;
     this.fileName = fileName;
-    this.loadSound(fileName)
+    this.loadSound(fileName);
+    
+    this.volume = audioCtx.createGain();
+    this.volume.gain.value = 0.075;
+    this.volume.connect(audioCtx.destination);
   }
 
   loadSound(fileName){
@@ -15,7 +19,7 @@ class SoundEffect {
       .then(arrayBuffer => this.audioCtx.decodeAudioData(arrayBuffer))
       .then(buffer => {
         this.source.buffer = buffer;
-        this.source.connect(this.audioCtx.destination);
+        this.source.connect(this.volume);
       } )
   }
 

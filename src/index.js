@@ -10,6 +10,7 @@ const ctx = canvas.getContext("2d");
 
 
 const theme = document.getElementById('theme');
+theme.volume = 0.2;
 const splash = document.getElementById('open-modal-background');
 const soundControl = document.getElementById('sound-control');
 let musicOn = true;
@@ -73,27 +74,6 @@ exitGame.addEventListener('click', (e) => {
 })
 
 
-let paused = false;
-
-const makeMove = keysDown => {
-  keysDown = parseInt(keysDown.join(""), 2);
-  let goodMove = game.checkMove(keysDown);
-  if (goodMove === true){
-    notePlayer.playSound(); 
-  }
-  else if (goodMove === false) {
-    errorPlayer.playSound();
-    paused = true;
-    setTimeout( () => {
-      paused = false
-      if (!game.gameOver()) game.drawBox();
-     }, 2500)
-  }
-}
-
-const debouncedMakeMove = debounce(makeMove, 40);
-
-
 const keyElements = document.querySelectorAll('.player-key');
 const keys = {'a': 0, 's': 1, 'd': 2, 'f': 3, 'g': 4}
 let keysDown = [0, 0, 0, 0, 0];
@@ -119,6 +99,28 @@ const initializeKeyListeners = () => {
     }
   })
 }
+
+
+let paused = false;
+
+const makeMove = keysDown => {
+  keysDown = parseInt(keysDown.join(""), 2);
+  let goodMove = game.checkMove(keysDown);
+  if (goodMove === true){
+    notePlayer.playSound(); 
+  }
+  else if (goodMove === false) {
+    errorPlayer.playSound();
+    paused = true;
+    setTimeout( () => {
+      paused = false
+      if (!game.gameOver()) game.drawBox();
+     }, 2500)
+  }
+}
+
+const debouncedMakeMove = debounce(makeMove, 40);
+
 
 
 
