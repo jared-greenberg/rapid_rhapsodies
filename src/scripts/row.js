@@ -1,17 +1,13 @@
 
-// Creates each row of the board
-class Move {
+class Row {
 
   constructor(level, ctx){
-    this.row = Move.createRow(level);
+    this.arr = Row.createRow(level);
     this.ctx = ctx;
-    this.blue = document.getElementById("blue")
-   
-    this.bouncing;
   }
 
   static createRow(level){
-    const row = Array(5).fill(0)
+    const arr = Array(5).fill(0)
     const indices = [0, 1, 2, 3, 4];
     
     // shuffle using Fisher-Yates
@@ -22,8 +18,8 @@ class Move {
 
     const randomNum = Math.floor(Math.random() * level + 1);
 
-    indices.slice(0, randomNum).forEach(idx => row[idx] = 1)
-    return row;
+    indices.slice(0, randomNum).forEach(idx => arr[idx] = 1)
+    return arr;
   }
 
   drawRow(y, stop){
@@ -81,7 +77,7 @@ class Move {
 
   drawMusicNotes(y){
     const colors = ['#33FCFF', '#AF33FF', '#E5FE15', '#FF8D33', '#AFFF33']
-    this.row.forEach((slot, i) => {
+    this.arr.forEach((slot, i) => {
       if (slot === 1) {
         const startX = i * 70 + 109.5;
         const startY = y + 55
@@ -117,4 +113,4 @@ class Move {
 
 }
 
-export default Move;
+export default Row;

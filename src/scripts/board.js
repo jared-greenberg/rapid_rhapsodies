@@ -1,4 +1,4 @@
-import Move from './move';
+import Row from './row';
 
 
 // holds all of the rows 
@@ -15,13 +15,13 @@ class Board {
   static initializeBoard(songLength, level, ctx) {
     const rows = [];
     for (let i = 0; i < songLength; i++){
-      rows.push(new Move(level, ctx))
+      rows.push(new Row(level, ctx))
     }
     return rows;
   }
 
   currentMove(){
-    return parseInt(this.rows[this.position].row.join(""), 2);
+    return parseInt(this.rows[this.position].arr.join(""), 2);
   }
 
   drawErrors(xOr){
