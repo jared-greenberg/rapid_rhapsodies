@@ -49,42 +49,31 @@ class Game {
   
 
   checkMove(playerMove){
-    const xOr = this.board.currentMove() ^ playerMove;
+    const xOr = this.board.currentMoveValue() ^ playerMove;
+    
     if (xOr === 0){
+
+      if (!this.interval) {this.startTimer()};
+
       this.board.nextMove();
       this.score++;
       this.showScore();
+
       if (this.score === this.board.length) {
         clearInterval(this.interval)
         this.showTime("Perfect Score!");
       }
+
       return true;
     }
+
     else {
+      if (!this.interval) return;
+      this.board.flashErrors(xOr);
       return false;
     }
   }
 
-  // organizes errors flashing
-  flashErrors(xOr){
-    let count = 0;
-    this.board.clearCurrentRow();
-    this.board.rows[this.board.position].drawRow(420 - 99, true);
-    this.board.drawErrors(xOr)
-    const flash = setInterval(() => {
-      if (count === 5){
-        clearInterval(flash);
-      }
-      else if (count % 2 !== 0){
-        this.board.drawErrors(xOr)
-      }
-      else {
-        this.board.clearCurrentRow();
-        this.board.rows[this.board.position].drawRow(420 - 99, true);
-      }
-      count++
-    }, 500);
-  }
 
   quit(){
     clearInterval(this.interval);

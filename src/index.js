@@ -14,7 +14,7 @@ const splash = document.getElementById('open-modal-background');
 
 splash.addEventListener("click", () => {
   splash.classList.add("hidden");
-  theme.play();
+  // theme.play();
 })
 
 window.addEventListener('blur', (e) => {
@@ -24,7 +24,7 @@ window.addEventListener('blur', (e) => {
 
 window.addEventListener('focus', (e) => {
   e.preventDefault();
-  theme.play();
+  // theme.play();
 })
 
 
@@ -37,13 +37,12 @@ function drawBox(){
 
 function draw(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
   let rowY = y;
   // TODO change this to for loop to exit early?
   game.board.rows.forEach(row => {
     // only draw the rows on the grid, can optimize with a for loop and break?
     if (rowY > -103 && rowY < canvas.height){
-      !started ? row.bounceNotes(rowY) : row.drawRow(rowY, true);
+      (game.board.position < 1) ? row.bounceNotes(rowY) : row.drawRow(rowY, true);
     }
     rowY -= 103;
   })
@@ -63,17 +62,12 @@ let paused = false;
 
 const makeMove = keysDown => {
   keysDown = parseInt(keysDown.join(""), 2);
-  if (game.checkMove(keysDown)){
-    if (!started){
-    game.startTimer();
-    started = true;
-  }
+  let goodMove = game.checkMove(keysDown);
+  if (goodMove === true){
     notePlayer.playSound();
     draw();  
-}
-  else {
-    if (!started) return;
-    game.flashErrors(game.board.currentMove() ^ keysDown);
+  }
+  else if (goodMove === false) {
     errorPlayer.playSound();
     paused = true;
     setTimeout( () => {
@@ -93,7 +87,6 @@ let keysDown = [0, 0, 0, 0, 0];
 document.addEventListener('keydown', (e) => {
   // don't do anything on error delay or game over
   if (paused || game.gameOver()) return;
-
   const idx = keys[e.key]
 
   if (idx === undefined || keysDown[idx] === 1) return;
@@ -116,7 +109,6 @@ const audioCtx = new AudioContext();
 let notePlayer, errorPlayer;
 
 
-let started;
 let y;
 let game;
 
@@ -137,7 +129,6 @@ startGame.addEventListener('click', (e) => {
   notePlayer = new NotePlayer(audioCtx, song);
   errorPlayer = new SoundEffect(audioCtx, 'wrong');
   game = new Game(Songs[song].length, level, ctx);
-  started = false;
   y = canvas.height - 99;
   draw();
   theme.pause();

@@ -4,6 +4,7 @@ class Row {
   constructor(level, ctx){
     this.arr = Row.createRow(level);
     this.ctx = ctx;
+    this.bouncing;
   }
 
   static createRow(level){
