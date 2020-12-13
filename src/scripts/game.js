@@ -8,7 +8,7 @@ class Game {
   constructor(songLength, level, ctx) {
     this.board = new Board(songLength, level, ctx)
     this.score = 0;
-    this.seconds = 3;
+    this.seconds = 29;
     this.scoreElement = document.getElementById("score");
     this.timerElement = document.getElementById("timer");
     this.overWarning = document.querySelector('.game-over-warning');
