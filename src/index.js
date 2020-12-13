@@ -11,10 +11,12 @@ const ctx = canvas.getContext("2d");
 
 const theme = document.getElementById('theme');
 const splash = document.getElementById('open-modal-background');
+const soundControl = document.getElementById('sound-control');
+let musicOn = true;
 
 splash.addEventListener("click", () => {
   splash.classList.add("hidden");
-  theme.play();
+  if (musicOn) {theme.play()};
 })
 
 window.addEventListener('blur', (e) => {
@@ -24,8 +26,20 @@ window.addEventListener('blur', (e) => {
 
 window.addEventListener('focus', (e) => {
   e.preventDefault();
-  theme.play();
+  if (musicOn && !menuModal.classList.contains("hidden")) {theme.play()};
 })
+
+soundControl.addEventListener('click', (e) => {
+  e.preventDefault();
+  toggleMusic();
+})
+
+const toggleMusic = () =>{
+  soundControl.classList.toggle("fa-volume-mute");
+  soundControl.classList.toggle("fa-volume-up");
+  musicOn ? theme.pause() : theme.play();
+  musicOn = !musicOn;
+}
 
 
 const menuModal = document.getElementById("menu-background");
@@ -55,7 +69,7 @@ exitGame.addEventListener('click', (e) => {
   menuModal.classList.remove('hidden');
   game.quit();
   theme.currentTime = 0;  
-  theme.play();
+  if (musicOn) {theme.play()};
 })
 
 

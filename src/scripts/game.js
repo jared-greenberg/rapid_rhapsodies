@@ -95,6 +95,7 @@ class Game {
     this.board.rows.forEach(row => {
       // only draw the rows on the grid, can optimize with a for loop and break?
       if (rowTop > -103 && rowTop < canvasHeight){
+       
         (!this.interval) ? row.bounceNotes(rowTop) : row.drawRow(rowTop, true);
       }
       rowTop -= 103;
