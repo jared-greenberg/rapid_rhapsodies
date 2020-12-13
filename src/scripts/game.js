@@ -8,9 +8,10 @@ class Game {
   constructor(songLength, level, ctx) {
     this.board = new Board(songLength, level, ctx)
     this.score = 0;
-    this.seconds = 29;
+    this.seconds = 3;
     this.scoreElement = document.getElementById("score");
     this.timerElement = document.getElementById("timer");
+    this.overWarning = document.querySelector('.game-over-warning');
     this.y = canvasHeight - 99;
     this.showScore();
     this.ctx = ctx;
@@ -39,7 +40,7 @@ class Game {
         this.timerElement.style.color = "red";
         this.timerElement.classList.add("flashing");
         this.showTime("Time's Up!");
-
+        this.overWarning.classList.toggle("hidden");
         // to remove the green box
         this.board.clearCurrentRow();
         this.board.rows[this.board.position].drawRow(420-99, true); 
@@ -119,6 +120,9 @@ class Game {
     this.timerElement.innerHTML = 30;
     this.timerElement.classList.remove("flashing");
     this.seconds = -1;
+    if (!this.overWarning.classList.contains("hidden")){
+      this.overWarning.classList.toggle("hidden");
+    }
     // stop bouncing if user quits before starting
     this.board.rows.forEach(row => clearInterval(row.bouncing))
   }

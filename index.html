@@ -13,10 +13,10 @@
 
 <body>
 
-  <div id="open-modal-background">
-    <div class="open-modal-content">
+  <div id="splash-modal-background">
+    <div class="splash-modal-content">
       <img id="title-logo" src="./src/assets/images/logo.png" alt="logo" />
-      <h1 id="open-title">Rapid Rhapsodies</h1>
+      <h1 id="splash-title">Rapid Rhapsodies</h1>
       <h3>Click Anywhere to Begin</h3>
     </div>
   </div>
@@ -115,31 +115,32 @@
 
 
     <div class="canvas-wrapper">
-    <canvas height="420" width="500" id="game-board"></canvas>
-      <div class="game-info">
-        <button id="quit">Menu</button>
-        <div class="timer-container">
-          <h3>Time</h3>
-          <div id="timer">30</div>
+      <canvas height="420" width="500" id="game-board"></canvas>
+        <div class="game-info">
+          <button id="quit">Menu</button>
+          <div class="timer-container">
+            <h3>Time</h3>
+            <div id="timer">30</div>
+          </div>
+          <div class="score-container">
+            <h3>Score</h3>
+            <div id="score"></div>
+          </div>
         </div>
-        <div class="score-container">
-          <h3>Score</h3>
-          <div id="score"></div>
-        </div>
-      </div>
     </div>
 
 
     <div id="piano-keys">
-      <div class="player-key blue"><h3>A</h3></div>
+      <div class="player-key blue"><label>A</label></div>
       <div class="black-key"></div>
-      <div class="player-key pink"><h3>S</h3></div>
+      <div class="player-key pink"><label>S</label></div>
       <div class="black-key"></div>
-      <div class="player-key yellow"><h3>D</h3></div>
+      <div class="player-key yellow"><label>D</label></div>
       <div class="black-key"></div>
-      <div class="player-key orange"><h3>F</h3></div>
+      <div class="player-key orange"><label>F</label></div>
       <div class="black-key"></div>
-      <div class="player-key green"><h3>G</h3></div>
+      <div class="player-key green"><label>G</label></div>
+      <h2 class="game-over-warning hidden">Good Job!</h2>
     </div>
 
   </section>
@@ -149,6 +150,7 @@
   <img src="./src/assets/images/angry.png" id="angry" style="display: none;"/>
   <script src="./dist/main.js"></script>
   <link rel="stylesheet" href="./dist/main.css" />
+
 </body>
 
 </html>

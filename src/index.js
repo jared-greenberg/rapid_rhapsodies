@@ -11,7 +11,7 @@ const ctx = canvas.getContext("2d");
 
 const theme = document.getElementById('theme');
 theme.volume = 0.2;
-const splash = document.getElementById('open-modal-background');
+const splash = document.getElementById('splash-modal-background');
 const soundControl = document.getElementById('sound-control');
 let musicOn = true;
 
