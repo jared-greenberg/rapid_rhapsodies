@@ -23,7 +23,7 @@ class Row {
     return arr;
   }
 
-  drawRow(y, stop){
+  drawRow(y, noBounce){
     this.ctx.beginPath();
     this.ctx.fillStyle = "#51514D";
     this.ctx.strokeStyle = "black";
@@ -69,7 +69,7 @@ class Row {
     this.ctx.fill();
     this.ctx.restore();
     
-    if (stop) {
+    if (noBounce) {
       clearInterval(this.bouncing)
       this.drawMusicNotes(y);
     }

@@ -1,5 +1,8 @@
 import Board from './board';
 
+const canvasHeight = 420; 
+const canvasWidth = 500;
+
 class Game {
   
   constructor(songLength, level, ctx) {
@@ -8,7 +11,10 @@ class Game {
     this.seconds = 29;
     this.scoreElement = document.getElementById("score");
     this.timerElement = document.getElementById("timer");
+    this.y = canvasHeight - 99;
     this.showScore();
+    this.ctx = ctx;
+    this.draw();
   }
 
 
@@ -55,6 +61,7 @@ class Game {
       if (!this.interval) {this.startTimer()};
 
       this.board.nextMove();
+      this.draw();
       this.score++;
       this.showScore();
 
@@ -71,6 +78,34 @@ class Game {
       this.board.flashErrors(xOr);
       return false;
     }
+  }
+
+  drawBox(){
+    this.ctx.strokeStyle = "green";
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeRect(1, canvasHeight - 109, canvasWidth-2, 103)
+  }
+
+  draw(){
+    this.ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    let rowTop = this.y;
+    // TODO change this to for loop to exit early?
+    this.board.rows.forEach(row => {
+      // only draw the rows on the grid, can optimize with a for loop and break?
+      if (rowTop > -103 && rowTop < canvasHeight){
+        (!this.interval) ? row.bounceNotes(rowTop) : row.drawRow(rowTop, true);
+      }
+      rowTop -= 103;
+    })
+    // 103 / 8 to make sure we hit the 103
+    this.y += 12.875 
+
+    if (!this.gameOver()) this.drawBox();
+
+    if ((this.y - 321 - 12.875) % 103 !== 0) {
+      requestAnimationFrame(this.draw.bind(this));
+    } 
+  
   }
 
 

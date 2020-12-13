@@ -29,33 +29,33 @@ window.addEventListener('focus', (e) => {
 
 
 
-function drawBox(){
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
-}
+// function drawBox(){
+//   ctx.strokeStyle = "green";
+//   ctx.lineWidth = 2;
+//   ctx.strokeRect(1, canvas.height - 109, canvas.width-2, 103)
+// }
 
-function draw(){
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  let rowY = y;
-  // TODO change this to for loop to exit early?
-  game.board.rows.forEach(row => {
-    // only draw the rows on the grid, can optimize with a for loop and break?
-    if (rowY > -103 && rowY < canvas.height){
-      (game.board.position < 1) ? row.bounceNotes(rowY) : row.drawRow(rowY, true);
-    }
-    rowY -= 103;
-  })
-  // 103 / 8 to make sure we hit the 103
-  y += 12.875 
+// function draw(){
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   let rowY = y;
+//   // TODO change this to for loop to exit early?
+//   game.board.rows.forEach(row => {
+//     // only draw the rows on the grid, can optimize with a for loop and break?
+//     if (rowY > -103 && rowY < canvas.height){
+//       (game.board.position < 1) ? row.bounceNotes(rowY) : row.drawRow(rowY, true);
+//     }
+//     rowY -= 103;
+//   })
+//   // 103 / 8 to make sure we hit the 103
+//   y += 12.875 
 
-  if (!game.gameOver()) drawBox();
+//   if (!game.gameOver()) drawBox();
 
-  if ((y - 321 - 12.875) % 103 !== 0) {
-    requestAnimationFrame(draw);
-  } 
+//   if ((y - 321 - 12.875) % 103 !== 0) {
+//     requestAnimationFrame(draw);
+//   } 
  
-}
+// }
 
 
 let paused = false;
@@ -64,15 +64,14 @@ const makeMove = keysDown => {
   keysDown = parseInt(keysDown.join(""), 2);
   let goodMove = game.checkMove(keysDown);
   if (goodMove === true){
-    notePlayer.playSound();
-    draw();  
+    notePlayer.playSound(); 
   }
   else if (goodMove === false) {
     errorPlayer.playSound();
     paused = true;
     setTimeout( () => {
       paused = false
-      if (!game.gameOver()) drawBox();
+      if (!game.gameOver()) game.drawBox();
      }, 2500)
   }
 }
@@ -129,9 +128,7 @@ startGame.addEventListener('click', (e) => {
   notePlayer = new NotePlayer(audioCtx, song);
   errorPlayer = new SoundEffect(audioCtx, 'wrong');
   game = new Game(Songs[song].length, level, ctx);
-  y = canvas.height - 99;
-  draw();
-  theme.pause();
+   theme.pause();
 })
 
 
