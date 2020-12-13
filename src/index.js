@@ -28,6 +28,36 @@ window.addEventListener('focus', (e) => {
 })
 
 
+const menuModal = document.getElementById("menu-background");
+const startGame = document.getElementById("play-button");
+const exitGame = document.getElementById("quit");
+let songTitle, level;
+const audioCtx = new AudioContext();
+let notePlayer, errorPlayer;
+let game;
+
+
+startGame.addEventListener('click', (e) => {
+  e.preventDefault();
+  menuModal.classList.add('hidden');
+  songTitle = document.querySelector('input[name="song"]:checked').value;
+  level = document.querySelector('input[name="level"]:checked').value;
+  notePlayer = new NotePlayer(audioCtx, songTitle);
+  errorPlayer = new SoundEffect(audioCtx, 'wrong');
+  game = new Game(Songs[songTitle].length, level, ctx);
+  theme.pause();
+  initializeKeyListeners();
+})
+
+
+exitGame.addEventListener('click', (e) => {
+  e.preventDefault();
+  menuModal.classList.remove('hidden');
+  game.quit();
+  theme.currentTime = 0;  
+  theme.play();
+})
+
 
 let paused = false;
 
@@ -50,68 +80,31 @@ const makeMove = keysDown => {
 const debouncedMakeMove = debounce(makeMove, 40);
 
 
-
 const keyElements = document.querySelectorAll('.player-key');
 const keys = {'a': 0, 's': 1, 'd': 2, 'f': 3, 'g': 4}
 let keysDown = [0, 0, 0, 0, 0];
 
+const initializeKeyListeners = () => {
+  document.addEventListener('keydown', (e) => {
+    // don't do anything on error delay or game over
+    if (paused || game.gameOver()) return;
+    const idx = keys[e.key]
 
-document.addEventListener('keydown', (e) => {
-  // don't do anything on error delay or game over
-  if (paused || game.gameOver()) return;
-  const idx = keys[e.key]
-
-  if (idx === undefined || keysDown[idx] === 1) return;
-  
-  keysDown[idx] = 1;
-  keyElements[idx].classList.add("selected");
-  debouncedMakeMove(keysDown);
-})
-
-
-document.addEventListener('keyup', (e) => { 
-  keysDown = Array(5).fill(0);
-  keyElements[keys[e.key]].classList.remove("selected");
-})
+    if (idx === undefined || keysDown[idx] === 1) return;
+    
+    keysDown[idx] = 1;
+    keyElements[idx].classList.add("selected");
+    debouncedMakeMove(keysDown);
+  })
 
 
-
-let song, level;
-const audioCtx = new AudioContext();
-let notePlayer, errorPlayer;
-let game;
-
-const menuModal = document.getElementById("menu-background");
-const startGame = document.getElementById("play-button");
-const exitGame = document.getElementById("quit");
-
-
-
-
-
-startGame.addEventListener('click', (e) => {
-  e.preventDefault();
-  menuModal.classList.add('hidden');
-  song = document.querySelector('input[name="song"]:checked').value;
-  level = document.querySelector('input[name="level"]:checked').value;
- 
-  notePlayer = new NotePlayer(audioCtx, song);
-  errorPlayer = new SoundEffect(audioCtx, 'wrong');
-  game = new Game(Songs[song].length, level, ctx);
-   theme.pause();
-})
-
-
-
-
-
-exitGame.addEventListener('click', (e) => {
-  e.preventDefault();
-  menuModal.classList.remove('hidden');
-  game.quit();
-  theme.currentTime = 0;  
-  theme.play();
-})
+  document.addEventListener('keyup', (e) => { 
+    keysDown = Array(5).fill(0);
+    if (keys[e.key] !== undefined) {
+      keyElements[keys[e.key]].classList.remove("selected");
+    }
+  })
+}
 
 
 
