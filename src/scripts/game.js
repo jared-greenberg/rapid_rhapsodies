@@ -92,11 +92,11 @@ class Game {
   draw(){
     this.ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     let rowTop = this.y;
+    let y = this.y;
     // TODO change this to for loop to exit early?
     this.board.rows.forEach(row => {
       // only draw the rows on the grid, can optimize with a for loop and break?
       if (rowTop > -103 && rowTop < canvasHeight){
-       
         (!this.interval) ? row.bounceNotes(rowTop) : row.drawRow(rowTop, true);
       }
       rowTop -= 103;

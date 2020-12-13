@@ -1,55 +1,25 @@
-### Background and Overview
-Rapid Rhapsodies is a single-player coordination and reflex game that involves pressing "piano keys" in the correct combination, much like Guitar Hero and Dance Dance Revolution. There is no rhythm; you must try to get through each song as quickly and accurately as possible before the time runs out.
+## Description
+Rapid Rhapsodies is based on a popular arcade game called "Grand Piano Keys." It is a hand-eye coordination game where you play the "piano keys" that correlate to the music notes on your screen. There is no rhythm; you must try to get through each song as quickly and accurately as possible before the timer runs out.
 
-### Functionality and MVP
-1. User Input  
-- Pick between 3 songs to play (Ode to Joy, Minuet in G, Fur Elise)
-- Choose the level of difficulty (easy, medium, or hard)  
-2. Game Board  
-- 5 piano keys correspond to 5 keys on the keyboard
-- Information about accuracy and time  
-3. Game Play
-- Scrolls as moves are correctly played
-- Plays a note from the sound on each correct press
-- Holds and alerts if an incorrect press was made
+You can checkout Rapid Rhapsodies using [this link](https://jared-greenberg.github.io/rapid_rhapsodies)!
 
-### Wireframes
-The game will have two screens. The splash will display the game's logo and let the user choose the song and level of difficulty. Once confirmed, the user will be taken to the game frame. Moves will be populated and inch down toward the piano keys until they are played. An instructions drop down will be visible on both screens. Quitting the game or finishing a round will bring the user back to the splash to play again.  
+## Features
+You may choose between 3 classic piano tunes (Ode to Joy, Minuet in G, and Fur Elise). As you play each row correctly, you hear the next note from your selected song. If you make any mistakes such as hitting extra keys, missing notes, or not pressing note combinations simultaneously, you will hear a bang on the piano and experience a 2.5 second delay. There are also 3 levels of difficulty to choose from. As you go from Beginner to Intermediate to Virtuoso, you will have a larger possible combination of notes to play at the same time. The music notes are produced randomly, so each time you play will be a different experience.
 
-### Splash:
-![splash](https://github.com/jared-greenberg/rapid_rhapsodies/blob/main/src/assets/splash.png)
+## Technology
+The bulk of the application, which was intended to be very light weight is rendered using HTML5 and SCSS, and is manipulated using purely JavaScript. More specifically, the game board is drawn and animated using the HTML Canvas API. The sound effects are buffered and played using JavaScript's Web Audio API, and they are all sourced from mp3 files that I designed on GarageBand. 
 
-### Game Frame:
-![gameframe](https://github.com/jared-greenberg/rapid_rhapsodies/blob/main/src/assets/game_frame.png)
+## Challenges
+### User Input
+Due to the nature of "keydown" events, occurring one at a time, it became challenging when I allowed for simultaneous combinations of keys in the game. In order to accurately parse player moves, I used Lodash's debouncing method to allow for the processing of multiple "keydown" events within a short time. Through testing, I found that an interval of 40ms was the perfect number that allowed for accuracy without accidentally validating some false inputs.
 
-## Architecture and Technology
-The game logic will be handled exclusively in Javascript. The game frame will be rendered with a mix of HTML and Canvas. In particular, the static piano keys will be implemented solely with HTML and the moving board will be implemented using Canvas. I will provide the files for piano notes/sound effects. Songs will be implemented as an array of note names that correspond to audio files. Ultimately, I would like to use the Web Audio API to help avoid sound latency, but I've been having some issues with it and might simply use audio html tags (I am struggling with converting local mp3s into ArrayBuffers so they can be decoded and made into AudioBufferSourceNodes).
+### Audio Buffering
+After I chose to create the sound effects myself on GarageBand, I started working with `<audio>` tags until I realized that it was difficult to have overlapping sounds, especially if a song had the same note/mp3 appearing twice in a row. I found some good resources within JavaScript's Web Audio API where I could efficiently load each note into its own buffer source node so that each source could be a separate version of the same file (if needed). I even built functionality into my NotePlayer class that once a buffer was played, the next node would be immediately loaded to remove some of the playback latency that I had previously experienced.
 
-## Implementation Timeline
-Day 1:
-- Create the Javascript logic for the game play (including timer and score)
-- Link the audio files to the project  
+### Comparing Expected and Received Input
+The comparison between the user's input and what was expected was getting a bit lengthy as I found myself iterating over two arrays and comparing corresponding values. I ultimately decided to parse both the received and expected input as integers so I could use binary operations. This allowed for shorter code and a constant time comparison. It also was an easier way to program error information on the canvas element when a user makes a mistake.
 
-Day 2:
-- Create the piano keys
-- Create the game board. 
-
-Day 3: 
-- Gameboard animation (scrolling, rendering time, score, and mistakes)
-- Add/test sound effects  
-
-Day 4: 
-- Add menu for user to choose song/level
-- Debug  
-
-Day 5:
-- Create instructions and personal links
-- Final touches
-
-
-## Bonus Features
- - Save high score
- - Eventually maybe a separate mode to create your own song to play
-
-
+## Todos
+- Add a small backend to save high scores
+- Add volume control beyond the game menu
 
