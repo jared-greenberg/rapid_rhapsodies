@@ -1,10 +1,14 @@
 ## Description
 Rapid Rhapsodies is based on a popular arcade game called "Grand Piano Keys." It is a hand-eye coordination game where you play the "piano keys" that correlate to the music notes on your screen. There is no rhythm; you must try to get through each song as quickly and accurately as possible before the timer runs out.
 
-You can checkout Rapid Rhapsodies using [this link](https://jared-greenberg.github.io/rapid_rhapsodies)!
+You can checkout Rapid Rhapsodies using [this link](https://jared-greenberg.github.io/rapid_rhapsodies)!  
+
+![menu photo](../visuals/menu_photo.png?raw=true)
 
 ## Features
 You may choose between 3 classic piano tunes (Ode to Joy, Minuet in G, and Fur Elise). As you play each row correctly, you hear the next note from your selected song. If you make any mistakes such as hitting extra keys, missing notes, or not pressing note combinations simultaneously, you will hear a bang on the piano and experience a 2.5 second delay. There are also 3 levels of difficulty to choose from. As you go from Beginner to Intermediate to Virtuoso, you will have a larger possible combination of notes to play at the same time. The music notes are produced randomly, so each time you play will be a different experience.
+
+![game play](../visuals/game_play.mov?raw=true)
 
 ## Technology
 The bulk of the application, which was intended to be very light weight is rendered using HTML5 and SCSS, and is manipulated using purely JavaScript. More specifically, the game board is drawn and animated using the HTML Canvas API. The sound effects are buffered and played using JavaScript's Web Audio API, and they are all sourced from mp3 files that I designed on GarageBand. The game logic is taken care of via Object Oriented Programming and all bundled together using Webpack.
