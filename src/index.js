@@ -100,7 +100,7 @@ const initializeKeyListeners = () => {
   })
 }
 
-
+const debouncedMakeMove = debounce(makeMove, 40);
 let paused = false;
 
 const makeMove = keysDown => {
@@ -119,7 +119,7 @@ const makeMove = keysDown => {
   }
 }
 
-const debouncedMakeMove = debounce(makeMove, 40);
+
 
 
 
