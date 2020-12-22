@@ -175,16 +175,19 @@
   background: black;
   color: white;
   border-right: 1px solid white;
-  margin-top: 25px;
-  padding-left: 15px;
+  margin-top: 5px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .instructions-panel{
-  height: 85%;
-  width: 93%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-right: 10px;
 }
 
 
@@ -196,8 +199,6 @@
 }
 
  .links{
-      
-    padding-bottom: 15px;
       
       a {
         text-decoration: none;
