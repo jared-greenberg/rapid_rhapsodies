@@ -70,7 +70,6 @@ class Row {
     this.ctx.restore();
     
     if (noBounce) {
-      debugger
       clearInterval(this.bouncing)
       this.drawMusicNotes(y);
     }

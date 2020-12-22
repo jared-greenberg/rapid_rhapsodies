@@ -17,10 +17,12 @@ let musicOn = true;
 
 splash.addEventListener("click", () => {
   splash.classList.add("hidden");
+  initSoundEvents();
   if (musicOn) {theme.play()};
 })
 
-window.addEventListener('blur', (e) => {
+const initSoundEvents = () => {
+  window.addEventListener('blur', (e) => {
   e.preventDefault();
   theme.pause();
 })
@@ -29,6 +31,9 @@ window.addEventListener('focus', (e) => {
   e.preventDefault();
   if (musicOn && !menuModal.classList.contains("hidden")) {theme.play()};
 })
+}
+
+
 
 soundControl.addEventListener('click', (e) => {
   e.preventDefault();
