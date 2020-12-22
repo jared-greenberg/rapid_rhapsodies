@@ -196,14 +196,18 @@
 }
 
  .links{
-      margin-top: 20px;
-    }
+      
+    padding-bottom: 15px;
+      
+      a {
+        text-decoration: none;
+        margin-right: 15px;
+      }
+    
 
     .icon {
-      > img{
-        height: 30px;
-        width: auto;
-      }
+      color: white;  
+    }
   }
 
   /*Game Menu*/
