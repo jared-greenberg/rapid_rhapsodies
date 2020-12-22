@@ -248,7 +248,7 @@
     display: none;
   }
 
-    #title, #open-title{
+    #title, #splash-title{
       font-size: 60px;
       font-family: 'Dancing Script', cursive;
       color: white;
@@ -259,7 +259,7 @@
       margin-bottom: 100px;
     }
 
-    #title{
+    #title, #splash-title{
       position: absolute;
       top: 250px;
       transform: rotate(-10deg);
@@ -371,8 +371,16 @@
     .splash-modal-content{
       width: 100%;
       text-align: center;
+      position: relative;
     }
 
     #splash-modal-background.hidden{
       display: none;
     }
+
+    #splash-title{
+      width: 100%;
+      top: 200px;
+    }
+
+  
