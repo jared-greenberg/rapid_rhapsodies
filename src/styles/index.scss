@@ -131,16 +131,25 @@
     height: 100%;
   }
 
-  #quit {
+  #quit, #try-again {
     border: 2px solid white;
     outline: none;
     margin-top: 15px;
-    height: 40px;
-    width: 70px;
     color: white;
     background: black;
     font-family: 'Dancing Script', cursive;
     font-size: 22px;
+  }
+
+  #quit{
+    height: 40px;
+    width: 70px;
+  }
+
+  #try-again{
+    display: block;
+    height: 40px;
+    width: 150px;
   }
 
   .flashing{
@@ -159,12 +168,19 @@
     display: none;
   }
 
-  .game-over-warning {
+  #try-again.hidden{
+    visibility: hidden;
+  }
+
+  .game-over-warning{
+    top: -85px;
+  }
+
+  .game-over-warning{
     display: block;
     position: absolute;
     width: 300px;
     height: 60px;
-    top: -85px;
     line-height: 60px;  
     text-align: center;
     background: black;
@@ -294,7 +310,7 @@
    }
 
    input[type="radio"]:checked + label, input[type="radio"] + label:hover, 
-   #play-button:hover, #quit:hover {
+   #play-button:hover, #quit:hover, #try-again:hover {
      background: white;
      color: black;
    }

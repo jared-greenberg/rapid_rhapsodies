@@ -8,10 +8,11 @@ class Game {
   constructor(songLength, level, ctx) {
     this.board = new Board(songLength, level, ctx)
     this.score = 0;
-    this.seconds = 29;
+    this.seconds = 30;
     this.scoreElement = document.getElementById("score");
     this.timerElement = document.getElementById("timer");
     this.overWarning = document.querySelector('.game-over-warning');
+    this.tryAgain = document.getElementById('try-again');
     this.y = canvasHeight - 99;
     this.showScore();
     this.ctx = ctx;
@@ -41,6 +42,7 @@ class Game {
         this.timerElement.classList.add("flashing");
         this.showTime("Time's Up!");
         this.overWarning.classList.toggle("hidden");
+        this.tryAgain.classList.toggle("hidden");
         // to remove the green box
         this.board.clearCurrentRow();
         this.board.rows[this.board.position].drawRow(420-99, true); 
@@ -71,6 +73,7 @@ class Game {
       if (this.score === this.board.length) {
         clearInterval(this.interval)
         this.showTime("Perfect Score!");
+        this.tryAgain.classList.toggle("hidden");
       }
 
       return true;
@@ -112,7 +115,6 @@ class Game {
   
   }
 
-
   quit(){
     // stop timer
     clearInterval(this.interval);
@@ -122,6 +124,9 @@ class Game {
     this.seconds = -1;
     if (!this.overWarning.classList.contains("hidden")){
       this.overWarning.classList.toggle("hidden");
+    }
+    if (!this.tryAgain.classList.contains("hidden")){
+      this.tryAgain.classList.toggle("hidden");
     }
     // stop bouncing if user quits before starting
     this.board.rows.forEach(row => clearInterval(row.bouncing))

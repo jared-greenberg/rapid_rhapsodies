@@ -51,6 +51,7 @@ const toggleMusic = () =>{
 const menuModal = document.getElementById("menu-background");
 const startGame = document.getElementById("play-button");
 const exitGame = document.getElementById("quit");
+const tryAgain = document.getElementById('try-again');
 let songTitle, level;
 const audioCtx = new AudioContext();
 let notePlayer, errorPlayer;
@@ -77,6 +78,16 @@ exitGame.addEventListener('click', (e) => {
   theme.currentTime = 0;  
   if (musicOn) {theme.play()};
 })
+
+tryAgain.addEventListener('click', (e) => {
+  e.preventDefault();
+  game.quit();
+  notePlayer = new NotePlayer(audioCtx, songTitle);
+  errorPlayer = new SoundEffect(audioCtx, 'wrong');
+  game = new Game(Songs[songTitle].length, level, ctx);
+})
+
+
 
 
 const keyElements = document.querySelectorAll('.player-key');
