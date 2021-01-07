@@ -93,7 +93,7 @@ The comparison between the user's input and what was expected was getting a bit 
 ```
 
 
-## Todos
+## Future Features
 - Add a small backend to save high scores
 - Add volume control beyond the game menu
 
