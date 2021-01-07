@@ -19,6 +19,7 @@ The bulk of the application, which was intended to be very light weight is rende
 ### User Input
 Due to the nature of "keydown" events, occurring one at a time, it became challenging when I allowed for simultaneous combinations of keys in the game. In order to accurately parse player moves, I used Lodash's debouncing method to allow for the processing of multiple "keydown" events within a short time. Through testing, I found that an interval of 40ms was the perfect number that allowed for accuracy without accidentally validating some false inputs.
 ```js
+  // index.js
   document.addEventListener('keydown', (e) => {
     if (paused || game.gameOver()) return;
     const idx = keys[e.key]
@@ -54,6 +55,7 @@ Due to the nature of "keydown" events, occurring one at a time, it became challe
 After I chose to create the sound effects myself on GarageBand, I started working with `<audio>` tags until I realized that it was difficult to have overlapping sounds, especially if a song had the same note/mp3 appearing twice in a row. I found some good resources within JavaScript's Web Audio API where I could efficiently load each note into its own buffer source node so that each source could be a separate version of the same file (if needed). I even built functionality into my NotePlayer class that once a buffer was played, the next node would be immediately loaded to remove some of the playback latency that I had previously experienced.
 
 ```js
+ // soundeffect.js
  loadSound(fileName){
     this.source = this.audioCtx.createBufferSource();
      fetch(`./src/assets/notes/${fileName}.mp3`)
@@ -78,12 +80,12 @@ After I chose to create the sound effects myself on GarageBand, I started workin
 The comparison between the user's input and what was expected was getting a bit lengthy as I found myself iterating over two arrays and comparing corresponding values. I ultimately decided to parse both the received and expected input as integers so I could use binary operations. This allowed for shorter code and a constant time comparison. It also was an easier way to program error information on the canvas element when a user makes a mistake.
 
 ```js
-  // Board.js
+  // board.js
   currentMoveValue(){
     return parseInt(this.rows[this.position].arr.join(""), 2);
   }  
 
-  // Game.js
+  // game.js
   checkMove(playerMove){
     const xOr = this.board.currentMoveValue() ^ playerMove;
     
